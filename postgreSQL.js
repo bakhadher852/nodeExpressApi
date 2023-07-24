@@ -83,8 +83,8 @@ async function insertData() {
   try {
     const insertQuery = `
     INSERT INTO Course (id, title, descr)
-    VALUES (1, 'Math', 'mathSub'),
-           (2, 'English', 'englishSub');`;
+    VALUES (Course.length=1, 'Math', 'mathSub'),
+           (Course.length=1, 'English', 'englishSub');`;
 
     await client.query(insertQuery);
     console.log("Data inserted successfully");
