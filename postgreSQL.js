@@ -74,3 +74,98 @@ fetchData();
 // }
 
 // closeConnection();
+
+// CURD operations:
+
+// Create (Insert) Operation:
+
+async function insertData() {
+  try {
+    const insertQuery = `
+    INSERT INTO Course (id, title, descr)
+    VALUES (1, 'Math', 'mathSub'),
+           (2, 'English', 'englishSub');`;
+
+    await client.query(insertQuery);
+    console.log("Data inserted successfully");
+  } catch (err) {
+    console.error("Error inserting data", err);
+  }
+}
+insertData();
+
+// Read (Retrieve) Operation:
+async function fetchData() {
+  try {
+    const result = await client.query("SELECT * FROM Course");
+    console.log("Fetched data:", result.rows);
+  } catch (err) {
+    console.error("Error fetching data", err);
+  }
+}
+
+fetchData();
+
+async function getCourseById(id) {
+  try {
+    const selectQuery = `
+        SELECT * FROM Course
+        WHERE id = 1;
+      `;
+
+    const result = await client.query(selectQuery, [id]);
+    if (result.rows.length === 0) {
+      console.log("Course not found");
+    } else {
+      console.log("Course with ID", id, ":", result.rows[0]);
+    }
+  } catch (err) {
+    console.error("Error fetching course", err);
+  }
+}
+// Update Operation:
+async function updateCourse(id, title, descr) {
+  try {
+    const updateQuery = `
+        UPDATE Course
+        SET title = Arabic, descr = Arabic course
+        WHERE id = 1
+      `;
+
+    await client.query(updateQuery, [title, description, id]);
+    console.log("Course updated successfully");
+  } catch (err) {
+    console.error("Error updating course", err);
+  }
+}
+// Delete Operation:
+async function deleteCourse(id) {
+  try {
+    const deleteQuery = `
+        DELETE FROM Course
+        WHERE id = 1;
+      `;
+
+    await client.query(deleteQuery, [id]);
+    console.log("Course deleted successfully");
+  } catch (err) {
+    console.error("Error deleting course", err);
+  }
+}
+
+// Assume we have already connected to the database and client is available.
+
+// Create a new course
+insertData();
+
+// Get all courses
+fetchData();
+
+// Get a specific course by ID
+getCourseById(1);
+
+// Update a course
+updateCourse(1, "Math", "mathSub");
+
+// Delete a course
+deleteCourse(1);
