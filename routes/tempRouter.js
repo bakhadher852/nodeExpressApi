@@ -85,4 +85,12 @@ router.delete("/delete/:id", (req, res) => {
       } else {
         console.log("Course not found or not deleted");
         res.sendStatus(404);
- 
+      }
+    })
+    .catch((err) => {
+      console.error("Error deleting course:", err);
+      res.sendStatus(500);
+    });
+});
+
+module.exports = router;
