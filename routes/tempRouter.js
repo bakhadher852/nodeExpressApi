@@ -21,6 +21,22 @@ router.get("/", (req, res) =>
     })
 );
 
+router.get("/get/:id", (req, res) => {
+  const { id } = req.params; // Get the course ID from the URL parameter
+
+  mod
+    .findByPk(id)
+    .then((course) => {
+      if (!course) {
+        return res.status(404).send({
+          message: "Course Not Found",
+        });
+      }
+      res.json(course);
+    })
+    .catch((error) => res.status(400).send(error));
+});
+
 router.post("/add", (req, res) => {
   const { title, desc } = req.body; // Assuming you are receiving the data in the request body
 
@@ -32,6 +48,7 @@ router.post("/add", (req, res) => {
     })
     .then((newCourse) => {
       console.log("New course added:", newCourse);
+      console.log("===========req", req, "================");
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
     .catch((err) => {

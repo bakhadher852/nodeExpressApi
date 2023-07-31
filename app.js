@@ -20,6 +20,10 @@ try {
 }
 //coruse routes
 app.use("/course", require("./routes/tempRouter"));
+//page 404 not found
+app.use((req, res) => {
+  res.status(404).send("Page Not found 404");
+});
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
 // module.exports = sequelize;
