@@ -19,7 +19,7 @@ try {
   console.error("Unable to connect to the server:", error);
 }
 //coruse routes
-app.use("/course", require("./routes/tempRouter"));
+app.use("/courses", require("./routes/tempRouter"));
 //page 404 not found
 app.use((req, res) => {
   res.status(404).send("Page Not found 404");
