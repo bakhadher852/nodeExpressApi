@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
+const errorHandler = require("./middleware/errorHandler");
 
 try {
   app.get("/", (req, res) => {
@@ -18,10 +19,8 @@ try {
 
 //coruse routes
 app.use("/courses", require("./routes/courses"));
-//page 404 not found
-// app.use(async (req, res, next) => {
-//   res.status(404).send("Page Not found 404");
-// });
+//Error handler
+app.use(errorHandler);
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
 // module.exports = sequelize;
