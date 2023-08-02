@@ -1,7 +1,7 @@
-// routes/tempRouter.js
+// routes/courses.js
 const express = require("express");
 const router = express.Router();
-const mod = require("../models/mod");
+const mod = require("../models/courses");
 // res.send("Router")
 
 // router.get("/", (req, res) =>

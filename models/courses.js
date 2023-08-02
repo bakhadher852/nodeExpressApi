@@ -1,27 +1,30 @@
 // models/courses.js
-const { DataTypes } = require("sequelize");
-const sequelize = require("../app");
+const DataTypes = require("sequelize");
+const db = require("../config/database");
 
-Courses.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+const course = db.define("courses", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  {
-    sequelize,
-    modelName: "Courses",
-  }
-);
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  desc: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+//If the table not exict it will creat it in DB
+// course
+//   .sync()
+//   .then((result) => {
+//     console.log("courses talbel added successfully", result);
+//   })
+//   .catch((err) => {
+//     console.log("courses talbel NOT added ", err);
+//   });
 
-return Courses;
+module.exports = course;

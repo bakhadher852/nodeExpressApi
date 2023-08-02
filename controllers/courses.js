@@ -1,4 +1,4 @@
-//controllers/courseController.js
+//controllers/courses.js
 const Course = require("./models/courses");
 
 exports.list = async (req, res) => {
