@@ -5,10 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
-// const mod = require("./models/mod");
-// app.listen(PORT, console.log(`Server running on port ${PORT}`));
 
-// Start the server
 try {
   app.get("/", (req, res) => {
     res.send("Hello World");
@@ -18,12 +15,13 @@ try {
 } catch (error) {
   console.error("Unable to connect to the server:", error);
 }
+
 //coruse routes
-app.use("/courses", require("./routes/tempRouter"));
+app.use("/courses", require("./routes/courses"));
 //page 404 not found
-app.use((req, res) => {
-  res.status(404).send("Page Not found 404");
-});
+// app.use(async (req, res, next) => {
+//   res.status(404).send("Page Not found 404");
+// });
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
 // module.exports = sequelize;
