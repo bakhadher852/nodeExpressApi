@@ -84,7 +84,7 @@ exports.create = async (req, res) => {
     desc: desc,
   })
     .then((newCourse) => {
-      console.log("New course added:", newCourse);
+      console.log("New course added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
