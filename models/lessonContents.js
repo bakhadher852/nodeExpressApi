@@ -1,8 +1,8 @@
-// models/courses.js
+// models/lessonContents.js
 const DataTypes = require("sequelize");
 const db = require("../config/database");
 
-const course = db.define("courses", {
+const lessonContents = db.define("lessonContents", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -12,19 +12,27 @@ const course = db.define("courses", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  type: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   desc: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  content: {
+    type: DataTypes.JSON,
+    allowNull: false,
+  },
 });
 //If the table not exict it will creat it in DB
-// course
+// lessonContents
 //   .sync()
 //   .then((result) => {
-//     console.log("courses talbel added successfully", result);
+//     console.log("lessonContents talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("courses talbel NOT added ", err);
+//     console.log("lessonContents talbel NOT added ", err);
 //   });
-course.sync();
-module.exports = course;
+lessonContents.sync();
+module.exports = lessonContents;

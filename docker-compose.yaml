@@ -1,0 +1,27 @@
+version: "3" # This specifies the version of the Compose file format being used.
+
+services:
+  postgres: # The PostgreSQL service
+    image: postgres # The Docker image to use for the PostgreSQL container
+    environment: # Environment variables to configure the PostgreSQL instance
+      POSTGRES_DB: bakhadherdb # Database name
+      POSTGRES_USER: postgres # PostgreSQL superuser username
+      POSTGRES_PASSWORD: postgres # PostgreSQL superuser password
+    ports:
+      - "5432:5432" # Maps the container's PostgreSQL port to the host's port (5432 in this case)
+    volumes: # Mounts a volume to persist the PostgreSQL data
+      - ./data:/var/lib/postgresql/data
+
+  pgadmin: # The PGAdmin service
+    container_name: pgadmin # Assigns a name to the PGAdmin container
+    image: dpage/pgadmin4 # The Docker image to use for the PGAdmin container
+    restart: always # Ensures the PGAdmin container restarts automatically
+    links: # Links the PGAdmin container to the 'postgres' container (deprecated in favor of 'networks' in newer versions)
+      - postgres
+    ports:
+      - "5050:80" # Maps the container's port 80 to the host's port 5050
+    environment: # Environment variables to configure PGAdmin
+      PGADMIN_DEFAULT_EMAIL: postgres@pgadmin.com # Default email for the PGAdmin admin user
+      PGADMIN_DEFAULT_PASSWORD: postgres # Default password for the PGAdmin admin user
+    depends_on: # Specifies that the 'pgadmin' service depends on the 'postgres' service
+      - postgres

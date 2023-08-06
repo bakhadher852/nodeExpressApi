@@ -19,8 +19,16 @@ try {
   console.error("Unable to connect to the server:", error);
 }
 
-//coruse routes
+// routes
 app.use("/courses", require("./routes/courses"));
+app.use("/sections", require("./routes/sections"));
+app.use("/units", require("./routes/units"));
+app.use("/lessons", require("./routes/lessons"));
+app.use("/lessonContents", require("./routes/lessonContents"));
+
+// app.use("/contentView", require("./routes/contentView"));
+// app.use("/studentsSubmission", require("./routes/studentsSubmission"));
+// app.use("/submissionMarks", require("./routes/submissionMarks"));
 
 //Error handler
 app.use(errorHandler);

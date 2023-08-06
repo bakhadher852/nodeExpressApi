@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "dad4d432-e4d1-4933-aafc-745145b899df",
+		"name": "lessonContents model",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21312908"
+	},
+	"item": [
+		{
+			"name": "getAllcourses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/lessonContents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCourseById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/lessonContents/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add new course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"Arabic\",\"desc\":\"arabic descreption\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/lessonContents/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete course by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/lessonContents/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update course by Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"title\":\"Arabic\",\"desc\":\"arabic descreption\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/lessonContents/update/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search and sort by course title",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/lessonContents//?title=math&sort=title",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents",
+						"",
+						""
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "math"
+						},
+						{
+							"key": "sort",
+							"value": "title"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search and sort by Id desc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/lessonContents//?id=2&sort=id_desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents",
+						"",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						},
+						{
+							"key": "sort",
+							"value": "id_desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search and sort by empty descreption_desc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/lessonContents/?desc=&sort=desc_desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"lessonContents",
+						""
+					],
+					"query": [
+						{
+							"key": "desc",
+							"value": ""
+						},
+						{
+							"key": "sort",
+							"value": "desc_desc"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
