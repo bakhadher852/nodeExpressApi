@@ -70,7 +70,7 @@ exports.getById = async (req, res) => {
     .then((section) => {
       if (!section) {
         return res.status(404).send({
-          message: "Course Not Found",
+          message: "section Not Found",
         });
       }
       res.json(section);
