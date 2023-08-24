@@ -1,6 +1,6 @@
 //controllers/studentSubmission.js
-// const Course = require("./models/studentSubmission");
-const studentSubmissionMod = require("../models/studentsSubmission");
+
+const studentSubmissionMod = require("../models/studentSubmission");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
 
@@ -46,12 +46,16 @@ exports.list = (req, res) => {
       offset: offset,
     })
     .then((mods) => {
-      const sectionData = mods.map((section) => ({
-        id: section.dataValues.id,
-        title: section.dataValues.title,
-        desc: section.dataValues.desc,
+      const studentSubmissionData = mods.map((studentSubmission) => ({
+        id: studentSubmission.dataValues.id,
+        title: studentSubmission.dataValues.title,
+        desc: studentSubmission.dataValues.desc,
       }));
-      res.json(sectionData);
+      if (studentSubmissionData.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(studentSubmissionData);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -67,13 +71,13 @@ exports.getById = async (req, res) => {
 
   studentSubmissionMod
     .findByPk(id)
-    .then((section) => {
-      if (!section) {
+    .then((studentSubmission) => {
+      if (!studentSubmission) {
         return res.status(404).send({
           message: "studentSubmissionNot Found",
         });
       }
-      res.json(section);
+      res.json(studentSubmission);
     })
     .catch((error) => res.status(400).send(error));
 };
@@ -86,7 +90,7 @@ exports.create = async (req, res) => {
       title: title,
       desc: desc,
     })
-    .then((newCourse) => {
+    .then((newstudentSubmission) => {
       console.log("New studentSubmissionadded:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation

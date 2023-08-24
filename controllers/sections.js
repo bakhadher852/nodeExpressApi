@@ -1,5 +1,4 @@
 //controllers/sections.js
-// const Course = require("./models/sections");
 const sectionsMod = require("../models/sections");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
@@ -51,7 +50,11 @@ exports.list = (req, res) => {
         title: section.dataValues.title,
         desc: section.dataValues.desc,
       }));
-      res.json(sectionData);
+      if (sectionData.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(sectionData);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -86,7 +89,7 @@ exports.create = async (req, res) => {
       title: title,
       desc: desc,
     })
-    .then((newCourse) => {
+    .then((newSection) => {
       console.log("New section added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation

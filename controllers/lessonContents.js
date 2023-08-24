@@ -52,14 +52,18 @@ exports.list = (req, res) => {
       offset: offset,
     })
     .then((mods) => {
-      const lessonData = mods.map((lesson) => ({
-        id: lesson.dataValues.id,
-        title: lesson.dataValues.title,
-        desc: lesson.dataValues.desc,
-        type: lesson.dataValues.type,
-        content: lesson.dataValues.content,
+      const lessonContentsData = mods.map((lessonContents) => ({
+        id: lessonContents.dataValues.id,
+        title: lessonContents.dataValues.title,
+        desc: lessonContents.dataValues.desc,
+        type: lessonContents.dataValues.type,
+        content: lessonContents.dataValues.content,
       }));
-      res.json(lessonData);
+      if (lessonContentsData.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(lessonContentsData);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -72,13 +76,13 @@ exports.getById = async (req, res) => {
 
   lessonContents
     .findByPk(id)
-    .then((lesson) => {
-      if (!lesson) {
+    .then((lessonContents) => {
+      if (!lessonContents) {
         return res.status(404).send({
           message: "Lesson Content Not Found",
         });
       }
-      res.json(lesson);
+      res.json(lessonContents);
     })
     .catch((error) => res.status(400).send(error));
 };
@@ -100,13 +104,13 @@ exports.create = async (req, res) => {
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
     .catch((err) => {
-      console.error("Error adding new lesson content:", err);
+      console.error("Error adding new lessonContents content:", err);
       res.sendStatus(500); // Send a 500 status code for internal server error
     });
 };
 
 exports.update = async (req, res) => {
-  const { id } = req.params; // Get the lesson ID from the URL parameter
+  const { id } = req.params; // Get the lessonContents ID from the URL parameter
   const { title, desc, type, content } = req.body;
 
   lessonContents

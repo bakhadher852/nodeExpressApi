@@ -51,7 +51,11 @@ exports.list = (req, res) => {
         title: unit.dataValues.title,
         desc: unit.dataValues.desc,
       }));
-      res.json(unitData);
+      if (unitData.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(unitData);
+      }
     })
     .catch((err) => {
       console.log(err);

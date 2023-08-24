@@ -1,5 +1,4 @@
 //controllers/oneToOneSessions.js
-// const Course = require("./models/oneToOneSessions");
 const oneToOneSessionsMod = require("../models/oneToOneSessions");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
@@ -46,12 +45,16 @@ exports.list = (req, res) => {
       offset: offset,
     })
     .then((mods) => {
-      const sectionData = mods.map((section) => ({
-        id: section.dataValues.id,
-        title: section.dataValues.title,
-        desc: section.dataValues.desc,
+      const oneToOneSessionsData = mods.map((oneToOneSessions) => ({
+        id: oneToOneSessions.dataValues.id,
+        title: oneToOneSessions.dataValues.title,
+        desc: oneToOneSessions.dataValues.desc,
       }));
-      res.json(sectionData);
+      if (oneToOneSessionsData.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(oneToOneSessionsData);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -59,21 +62,21 @@ exports.list = (req, res) => {
     });
 };
 //oneToOneSessions/?title=math&sort=title :  oneToOneSessions with the title equal to "math", sorted in ascending order of titles.
-//oneToOneSessions/?id=2&sort=id_desc :  section with id equal to 2, sorted in descending order of IDs.
+//oneToOneSessions/?id=2&sort=id_desc :  oneToOneSessions with id equal to 2, sorted in descending order of IDs.
 //oneToOneSessions/?desc=&sort=desc_desc :  oneToOneSessions with an empty desc (description), sorted in descending order of descriptions.
 // Filter by parameters with sorting
 exports.getById = async (req, res) => {
-  const { id } = req.params; // Get the section ID from the URL parameter
+  const { id } = req.params; // Get the oneToOneSessions ID from the URL parameter
 
   oneToOneSessionsMod
     .findByPk(id)
-    .then((section) => {
-      if (!section) {
+    .then((oneToOneSessions) => {
+      if (!oneToOneSessions) {
         return res.status(404).send({
           message: "oneToOneSessions Not Found",
         });
       }
-      res.json(section);
+      res.json(oneToOneSessions);
     })
     .catch((error) => res.status(400).send(error));
 };
@@ -86,7 +89,7 @@ exports.create = async (req, res) => {
       title: title,
       desc: desc,
     })
-    .then((newCourse) => {
+    .then((newoneToOneSessions) => {
       console.log("New oneToOneSessions added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation

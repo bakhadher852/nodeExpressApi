@@ -50,7 +50,11 @@ exports.list = (req, res) => {
         title: course.dataValues.title,
         desc: course.dataValues.desc,
       }));
-      res.json(courseData);
+      if (courseData.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(courseData);
+      }
     })
     .catch((err) => {
       console.log(err);

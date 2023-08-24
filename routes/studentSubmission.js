@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 // const studentSubmissionMod = require("../models/studentSubmission");
-const studentSubmissionController = require("../controllers/studentsSubmission");
+const studentSubmissionController = require("../controllers/studentSubmission");
 // res.send("Router")
 
 router.get("/", studentSubmissionController.list);

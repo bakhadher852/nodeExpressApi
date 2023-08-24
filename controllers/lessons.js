@@ -51,7 +51,11 @@ exports.list = (req, res) => {
         title: lesson.dataValues.title,
         desc: lesson.dataValues.desc,
       }));
-      res.json(lessonData);
+      if (lessonData.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(lessonData);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -86,7 +90,7 @@ exports.create = async (req, res) => {
       title: title,
       desc: desc,
     })
-    .then((newCourse) => {
+    .then((newlessons) => {
       console.log("New lessons added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation

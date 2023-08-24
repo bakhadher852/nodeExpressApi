@@ -46,12 +46,16 @@ exports.list = (req, res) => {
       offset: offset,
     })
     .then((mods) => {
-      const sectionData = mods.map((section) => ({
-        id: section.dataValues.id,
-        title: section.dataValues.title,
-        desc: section.dataValues.desc,
+      const submissionMarks = mods.map((submissionMark) => ({
+        id: submissionMark.dataValues.id,
+        title: submissionMark.dataValues.title,
+        desc: submissionMark.dataValues.desc,
       }));
-      res.json(sectionData);
+      if (submissionMarks.length === 0) {
+        res.send("No thing added yet");
+      } else {
+        res.json(submissionMarks);
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -67,13 +71,13 @@ exports.getById = async (req, res) => {
 
   submissionMarksMod
     .findByPk(id)
-    .then((section) => {
-      if (!section) {
+    .then((submissionMarks) => {
+      if (!submissionMarks) {
         return res.status(404).send({
           message: "submissionMarksNot Found",
         });
       }
-      res.json(section);
+      res.json(submissionMarks);
     })
     .catch((error) => res.status(400).send(error));
 };
