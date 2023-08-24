@@ -1,6 +1,6 @@
 //controllers/contentViews.js
 // const Course = require("./models/contentViews");
-const contentViewsMod = require("../models/contentViews");
+const contentViewsMod = require("../models/contentView");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
 

@@ -25,10 +25,10 @@ app.use("/sections", require("./routes/sections"));
 app.use("/units", require("./routes/units"));
 app.use("/lessons", require("./routes/lessons"));
 app.use("/lessonContents", require("./routes/lessonContents"));
-
-// app.use("/contentView", require("./routes/contentView"));
-// app.use("/studentsSubmission", require("./routes/studentsSubmission"));
-// app.use("/submissionMarks", require("./routes/submissionMarks"));
+app.use("/contentView", require("./routes/contentView"));
+app.use("/studentsSubmission", require("./routes/studentsSubmission"));
+app.use("/submissionMarks", require("./routes/submissionMarks"));
+app.use("/oneToOneSessions", require("./routes/oneToOneSessions"));
 
 //Error handler
 app.use(errorHandler);

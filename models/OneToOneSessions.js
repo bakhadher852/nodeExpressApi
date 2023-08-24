@@ -9,8 +9,9 @@ const oneToOneSessions = db.define("oneToOneSessions", {
     primaryKey: true,
   },
   timestamp: {
-    type: DataTypes.timestamp,
+    type: DataTypes.DATE,
     allowNull: false,
+    defaultValue: DataTypes.NOW,
   },
   duration: {
     type: DataTypes.FLOAT,

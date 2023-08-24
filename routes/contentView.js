@@ -1,8 +1,8 @@
 // routes/contentViews.js
 const express = require("express");
 const router = express.Router();
-const contentViewsMod = require("../models/contentViews");
-const contentViewsController = require("../controllers/contentViews");
+// const contentViewsMod = require("../models/contentView");
+const contentViewsController = require("../controllers/contentView");
 // res.send("Router")
 
 router.get("/", contentViewsController.list);

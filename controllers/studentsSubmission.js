@@ -1,6 +1,6 @@
 //controllers/studentSubmission.js
 // const Course = require("./models/studentSubmission");
-const studentSubmissionMod = require("../models/studentSubmission");
+const studentSubmissionMod = require("../models/studentsSubmission");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
 

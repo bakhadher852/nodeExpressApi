@@ -9,8 +9,9 @@ const contentViews = db.define("contentViews", {
     primaryKey: true,
   },
   timestamp: {
-    type: DataTypes.timestamp,
+    type: DataTypes.DATE,
     allowNull: false,
+    defaultValue: DataTypes.NOW,
   },
 });
 //If the table not exict it will creat it in DB

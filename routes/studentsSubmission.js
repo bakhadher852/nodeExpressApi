@@ -1,8 +1,8 @@
 // routes/studentSubmission.js
 const express = require("express");
 const router = express.Router();
-const studentSubmissionMod = require("../models/studentSubmission");
-const studentSubmissionController = require("../controllers/studentSubmission");
+// const studentSubmissionMod = require("../models/studentSubmission");
+const studentSubmissionController = require("../controllers/studentsSubmission");
 // res.send("Router")
 
 router.get("/", studentSubmissionController.list);
