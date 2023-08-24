@@ -70,7 +70,7 @@ exports.getById = async (req, res) => {
     .then((unit) => {
       if (!unit) {
         return res.status(404).send({
-          message: "Course Not Found",
+          message: "units Not Found",
         });
       }
       res.json(unit);
@@ -113,10 +113,10 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("Course updated successfully");
+        console.log("units updated successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not updated");
+        console.log("units not found or not updated");
         res.sendStatus(404);
       }
     })
@@ -135,10 +135,10 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("Course deleted successfully");
+        console.log("units deleted successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not deleted");
+        console.log("units not found or not deleted");
         res.sendStatus(404);
       }
     })

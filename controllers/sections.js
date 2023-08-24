@@ -113,10 +113,10 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("Course updated successfully");
+        console.log("sections updated successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not updated");
+        console.log("sections not found or not updated");
         res.sendStatus(404);
       }
     })
@@ -135,10 +135,10 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("Course deleted successfully");
+        console.log("sections deleted successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not deleted");
+        console.log("sections not found or not deleted");
         res.sendStatus(404);
       }
     })

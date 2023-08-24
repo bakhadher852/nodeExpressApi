@@ -92,7 +92,7 @@ exports.create = async (req, res) => {
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
     .catch((err) => {
-      console.error("Error adding new section:", err);
+      console.error("Error adding new contentViews:", err);
       res.sendStatus(500); // Send a 500 status code for internal server error
     });
 };
@@ -113,15 +113,15 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("Course updated successfully");
+        console.log("contentViews updated successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not updated");
+        console.log("contentViews not found or not updated");
         res.sendStatus(404);
       }
     })
     .catch((err) => {
-      console.error("Error updating section:", err);
+      console.error("Error updating contentViews:", err);
       res.sendStatus(500);
     });
 };
@@ -135,15 +135,15 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("Course deleted successfully");
+        console.log("contentViews deleted successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not deleted");
+        console.log("contentViews not found or not deleted");
         res.sendStatus(404);
       }
     })
     .catch((err) => {
-      console.error("Error deleting section:", err);
+      console.error("Error deleting contentViews:", err);
       res.sendStatus(500);
     });
 };

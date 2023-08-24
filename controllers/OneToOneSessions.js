@@ -70,7 +70,7 @@ exports.getById = async (req, res) => {
     .then((section) => {
       if (!section) {
         return res.status(404).send({
-          message: "section Not Found",
+          message: "oneToOneSessions Not Found",
         });
       }
       res.json(section);
@@ -87,18 +87,18 @@ exports.create = async (req, res) => {
       desc: desc,
     })
     .then((newCourse) => {
-      console.log("New section added:");
+      console.log("New oneToOneSessions added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
     .catch((err) => {
-      console.error("Error adding new section:", err);
+      console.error("Error adding new oneToOneSessions:", err);
       res.sendStatus(500); // Send a 500 status code for internal server error
     });
 };
 
 exports.update = async (req, res) => {
-  const { id } = req.params; // Get the section ID from the URL parameter
+  const { id } = req.params; // Get the oneToOneSessions ID from the URL parameter
   const { title, desc } = req.body; // Get the updated data from the request body
 
   oneToOneSessionsMod
@@ -113,21 +113,21 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("Course updated successfully");
+        console.log("oneToOneSessions updated successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not updated");
+        console.log("oneToOneSessions not found or not updated");
         res.sendStatus(404);
       }
     })
     .catch((err) => {
-      console.error("Error updating section:", err);
+      console.error("Error updating oneToOneSessions:", err);
       res.sendStatus(500);
     });
 };
 
 exports.delete = async (req, res) => {
-  const { id } = req.params; // Get the section ID from the URL parameter
+  const { id } = req.params; // Get the oneToOneSessions  ID from the URL parameter
 
   oneToOneSessionsMod
     .destroy({
@@ -135,15 +135,15 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("Course deleted successfully");
+        console.log("oneToOneSessions deleted successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not deleted");
+        console.log("oneToOneSessions not found or not deleted");
         res.sendStatus(404);
       }
     })
     .catch((err) => {
-      console.error("Error deleting section:", err);
+      console.error("Error deleting oneToOneSessions", err);
       res.sendStatus(500);
     });
 };

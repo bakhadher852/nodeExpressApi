@@ -138,15 +138,15 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("Course deleted successfully");
+        console.log("lessonContents deleted successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not deleted");
+        console.log("lessonContents not found or not deleted");
         res.sendStatus(404);
       }
     })
     .catch((err) => {
-      console.error("Error deleting lesson:", err);
+      console.error("Error deleting lessonContents:", err);
       res.sendStatus(500);
     });
 };
