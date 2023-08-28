@@ -93,11 +93,11 @@ exports.create = async (req, res) => {
     .then((newCourse) => {
       console.log("New unit added:");
 
-      res.sendStatus(201); // Send a 201 status code to indicate successful creation
+      res.status(201).send("New unit added:");
     })
     .catch((err) => {
       console.error("Error adding new unit:", err);
-      res.sendStatus(500); // Send a 500 status code for internal server error
+      res.status(500).send("Error adding new unit:");
     });
 };
 
@@ -118,15 +118,15 @@ exports.update = async (req, res) => {
     .then((result) => {
       if (result[0] === 1) {
         console.log("units updated successfully");
-        res.sendStatus(200);
+        res.status(200).send("units updated successfully");
       } else {
         console.log("units not found or not updated");
-        res.sendStatus(404);
+        res.status(404).send("units not found or not updated");
       }
     })
     .catch((err) => {
       console.error("Error updating unit:", err);
-      res.sendStatus(500);
+      res.status(500).send("Error updating unit:");
     });
 };
 
@@ -140,10 +140,10 @@ exports.delete = async (req, res) => {
     .then((result) => {
       if (result === 1) {
         console.log("units deleted successfully");
-        res.sendStatus(200);
+        res.status(200).send("units deleted successfully");
       } else {
         console.log("units not found or not deleted");
-        res.sendStatus(404);
+        res.status(404).send("units not found or not deleted");
       }
     })
     .catch((err) => {
