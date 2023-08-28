@@ -131,7 +131,7 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  const { id } = req.params; // Get the lesson ID from the URL parameter
+  const { id } = req.params;
 
   lessonsMod
     .destroy({
@@ -140,10 +140,10 @@ exports.delete = async (req, res) => {
     .then((result) => {
       if (result === 1) {
         console.log("lessons deleted successfully");
-        res.sendStatus(200);
+        res.status(200).send("lessons deleted successfully");
       } else {
         console.log("lessons not found or not deleted");
-        res.sendStatus(404);
+        res.status(404).send("lessons not found or not deleted");
       }
     })
     .catch((err) => {
