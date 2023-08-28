@@ -88,7 +88,7 @@ exports.getById = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  const { title, desc } = req.body;
+  const { title, desc, type, content } = req.body;
 
   // Post request
   lessonContents
@@ -109,6 +109,7 @@ exports.create = async (req, res) => {
     });
 };
 
+//Update Request
 exports.update = async (req, res) => {
   const { id } = req.params; // Get the lessonContents ID from the URL parameter
   const { title, desc, type, content } = req.body;
@@ -125,17 +126,18 @@ exports.update = async (req, res) => {
         where: { id: id },
       }
     )
-    .then((result) => {
-      // ... (The existing code remains unchanged)
+    .then(() => {
+      console.log(" lesson content updated");
+      res.status(200).send(" lesson content updated");
     })
     .catch((err) => {
-      // ... (The existing code remains unchanged)
+      console.error("Error updating lessonContents :", err);
+      res.sendStatus(500);
     });
 };
 
 exports.delete = async (req, res) => {
-  // ... (The existing code remains unchanged)
-
+  const { id } = req.params;
   lessonContents
     .destroy({
       where: { id: id },
@@ -143,10 +145,10 @@ exports.delete = async (req, res) => {
     .then((result) => {
       if (result === 1) {
         console.log("lessonContents deleted successfully");
-        res.sendStatus(200);
+        res.status(200).send("lessonContents deleted successfully");
       } else {
         console.log("lessonContents not found or not deleted");
-        res.sendStatus(404);
+        res.status(404).send("lessonContents not found or not deleted");
       }
     })
     .catch((err) => {

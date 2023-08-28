@@ -43,3 +43,4 @@ app.listen(PORT, console.log(`Server running on port ${PORT}`));
 //   "====================================app=========================="
 // );
 module.exports = PORT;
+module.exports = app;
