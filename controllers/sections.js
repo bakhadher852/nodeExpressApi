@@ -89,14 +89,14 @@ exports.create = async (req, res) => {
       title: title,
       desc: desc,
     })
-    .then((newSection) => {
+    .then(() => {
       console.log("New section added:");
 
-      res.sendStatus(201); // Send a 201 status code to indicate successful creation
+      res.status(201).send("New section added");
     })
     .catch((err) => {
       console.error("Error adding new section:", err);
-      res.sendStatus(500); // Send a 500 status code for internal server error
+      res.status(500).send("Error adding new section:");
     });
 };
 
@@ -117,10 +117,10 @@ exports.update = async (req, res) => {
     .then((result) => {
       if (result[0] === 1) {
         console.log("sections updated successfully");
-        res.sendStatus(200);
+        res.status(200).send("sections updated successfully");
       } else {
         console.log("sections not found or not updated");
-        res.sendStatus(404);
+        res.status(404).send("sections not found or not updated");
       }
     })
     .catch((err) => {
@@ -139,10 +139,10 @@ exports.delete = async (req, res) => {
     .then((result) => {
       if (result === 1) {
         console.log("sections deleted successfully");
-        res.sendStatus(200);
+        res.status(200).send("sections deleted successfully");
       } else {
         console.log("sections not found or not deleted");
-        res.sendStatus(404);
+        res.status(404).send("sections not found or not deleted");
       }
     })
     .catch((err) => {
