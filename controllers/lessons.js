@@ -118,10 +118,10 @@ exports.update = async (req, res) => {
     .then((result) => {
       if (result[0] === 1) {
         console.log("lessons updated successfully");
-        res.sendStatus(200);
+        res.status(200).send("lessons updated successfully");
       } else {
         console.log("lessons not found or not updated");
-        res.sendStatus(404);
+        res.status(404).send("lessons not found or not updated");
       }
     })
     .catch((err) => {
