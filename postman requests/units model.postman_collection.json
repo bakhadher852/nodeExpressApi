@@ -7,17 +7,25 @@
 	},
 	"item": [
 		{
-			"name": "getAllcourses",
+			"name": "getAllUnits",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/units",
-					"protocol": "http",
+					"raw": "{{url}}/units",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units"
 					]
@@ -26,17 +34,25 @@
 			"response": []
 		},
 		{
-			"name": "getCourseById",
+			"name": "getUnitsById",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/units/1",
-					"protocol": "http",
+					"raw": "{{url}}/units/1",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units",
 						"1"
@@ -46,8 +62,18 @@
 			"response": []
 		},
 		{
-			"name": "add new course",
+			"name": "add new Units",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -60,12 +86,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/units/add",
-					"protocol": "http",
+					"raw": "{{url}}/units/add",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units",
 						"add"
@@ -75,17 +99,25 @@
 			"response": []
 		},
 		{
-			"name": "delete course by Id",
+			"name": "delete Units by Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/units/delete/1",
-					"protocol": "http",
+					"raw": "{{url}}/units/delete/1",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units",
 						"delete",
@@ -96,8 +128,18 @@
 			"response": []
 		},
 		{
-			"name": "update course by Id",
+			"name": "update Units by Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -110,12 +152,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/units/update/2",
-					"protocol": "http",
+					"raw": "{{url}}/units/update/2",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units",
 						"update",
@@ -126,17 +166,25 @@
 			"response": []
 		},
 		{
-			"name": "search and sort by course title",
+			"name": "search and sort by Units title",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/units//?title=math&sort=title",
-					"protocol": "http",
+					"raw": "{{url}}/units//?title=math&sort=title",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units",
 						"",
@@ -159,15 +207,23 @@
 		{
 			"name": "search and sort by Id desc",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/units//?id=2&sort=id_desc",
-					"protocol": "http",
+					"raw": "{{url}}/units//?id=2&sort=id_desc",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units",
 						"",
@@ -190,15 +246,23 @@
 		{
 			"name": "search and sort by empty descreption_desc",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/units/?desc=&sort=desc_desc",
-					"protocol": "http",
+					"raw": "{{url}}/units/?desc=&sort=desc_desc",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"units",
 						""

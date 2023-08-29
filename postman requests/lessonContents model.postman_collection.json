@@ -7,17 +7,25 @@
 	},
 	"item": [
 		{
-			"name": "getAllcourses",
+			"name": "getAllLessonContents",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/lessonContents",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents"
 					]
@@ -26,17 +34,25 @@
 			"response": []
 		},
 		{
-			"name": "getCourseById",
+			"name": "getLessonContentsById",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/lessonContents/1",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents/1",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents",
 						"1"
@@ -46,13 +62,23 @@
 			"response": []
 		},
 		{
-			"name": "add new course",
+			"name": "add new LessonContents",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"title\":\"Arabic\",\"desc\":\"arabic descreption\"}",
+					"raw": "{\"title\":\"test Title\",\"type\":\"test type \",\"desc\":\"test descreption\",\"content\":{\"testOne\":\"testOne\",\"testTwo\":\"testTwo\"}}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,12 +86,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/lessonContents/add",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents/add",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents",
 						"add"
@@ -75,17 +99,25 @@
 			"response": []
 		},
 		{
-			"name": "delete course by Id",
+			"name": "delete LessonContents by Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/lessonContents/delete/1",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents/delete/1",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents",
 						"delete",
@@ -96,8 +128,18 @@
 			"response": []
 		},
 		{
-			"name": "update course by Id",
+			"name": "update LessonContents by Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -110,12 +152,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/lessonContents/update/2",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents/update/2",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents",
 						"update",
@@ -126,17 +166,25 @@
 			"response": []
 		},
 		{
-			"name": "search and sort by course title",
+			"name": "search and sort by LessonContents title",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/lessonContents//?title=math&sort=title",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents//?title=test Title&sort=title",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents",
 						"",
@@ -145,7 +193,7 @@
 					"query": [
 						{
 							"key": "title",
-							"value": "math"
+							"value": "test Title"
 						},
 						{
 							"key": "sort",
@@ -159,15 +207,23 @@
 		{
 			"name": "search and sort by Id desc",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/lessonContents//?id=2&sort=id_desc",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents//?id=2&sort=id_desc",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents",
 						"",
@@ -190,15 +246,23 @@
 		{
 			"name": "search and sort by empty descreption_desc",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/lessonContents/?desc=&sort=desc_desc",
-					"protocol": "http",
+					"raw": "{{url}}/lessonContents/?desc= &sort=desc_desc",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"lessonContents",
 						""
@@ -206,7 +270,7 @@
 					"query": [
 						{
 							"key": "desc",
-							"value": ""
+							"value": " "
 						},
 						{
 							"key": "sort",

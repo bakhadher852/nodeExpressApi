@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "121afa8b-70c1-47eb-a16c-8383d41d33c8",
-		"name": "lessons model",
+		"_postman_id": "e39a5ade-9658-486b-adaa-3a437d5a137a",
+		"name": "studentSubmission model",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21312908"
 	},
 	"item": [
 		{
-			"name": "getAllLessons",
+			"name": "getAllStudentSubmission",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -22,19 +22,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/lessons",
+					"raw": "{{url}}/StudentSubmission",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons"
+						"StudentSubmission"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "getLessonsById",
+			"name": "getStudentSubmissionById",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -49,20 +49,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/lessons/1",
+					"raw": "{{url}}/StudentSubmission/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons",
-						"1"
+						"StudentSubmission",
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "add new Lessons",
+			"name": "add new StudentSubmission",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"title\":\"Arabic\",\"desc\":\"arabic descreption\"}",
+					"raw": "{\"content\":{\"test1\":\"testOne\"}}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,12 +86,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/lessons/add",
+					"raw": "{{url}}/StudentSubmission/add",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons",
+						"StudentSubmission",
 						"add"
 					]
 				}
@@ -99,7 +99,7 @@
 			"response": []
 		},
 		{
-			"name": "delete Lessons by Id",
+			"name": "delete StudentSubmission by Id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -114,12 +114,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/lessons/delete/1",
+					"raw": "{{url}}/StudentSubmission/delete/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons",
+						"StudentSubmission",
 						"delete",
 						"1"
 					]
@@ -128,7 +128,7 @@
 			"response": []
 		},
 		{
-			"name": "update Lessons by Id",
+			"name": "update StudentSubmission by Id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -152,12 +152,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/lessons/update/2",
+					"raw": "{{url}}/StudentSubmission/update/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons",
+						"StudentSubmission",
 						"update",
 						"2"
 					]
@@ -166,7 +166,7 @@
 			"response": []
 		},
 		{
-			"name": "search and sort by Lessons title",
+			"name": "search and sort by StudentSubmission content",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -181,23 +181,23 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/lessons//?title=math&sort=title",
+					"raw": "{{url}}/StudentSubmission//?content=&sort=",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons",
+						"StudentSubmission",
 						"",
 						""
 					],
 					"query": [
 						{
-							"key": "title",
-							"value": "math"
+							"key": "content",
+							"value": ""
 						},
 						{
 							"key": "sort",
-							"value": "title"
+							"value": ""
 						}
 					]
 				}
@@ -220,12 +220,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/lessons//?id=2&sort=id_desc",
+					"raw": "{{url}}/StudentSubmission//?id=2&sort=id_desc",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons",
+						"StudentSubmission",
 						"",
 						""
 					],
@@ -259,22 +259,23 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/lessons/?desc=&sort=desc_desc",
+					"raw": "{{url}}/StudentSubmission/?content= ",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessons",
+						"StudentSubmission",
 						""
 					],
 					"query": [
 						{
-							"key": "desc",
-							"value": ""
+							"key": "sort",
+							"value": "desc_desc",
+							"disabled": true
 						},
 						{
-							"key": "sort",
-							"value": "desc_desc"
+							"key": "content",
+							"value": " "
 						}
 					]
 				}

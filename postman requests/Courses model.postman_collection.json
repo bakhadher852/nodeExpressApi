@@ -9,15 +9,23 @@
 		{
 			"name": "getAllcourses",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/courses",
-					"protocol": "http",
+					"raw": "{{url}}/courses",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses"
 					]
@@ -28,18 +36,26 @@
 		{
 			"name": "getCourseById",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/courses/1",
-					"protocol": "http",
+					"raw": "{{url}}/courses/2",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -48,11 +64,21 @@
 		{
 			"name": "add new course",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"title\":\"Arabic\",\"desc\":\"arabic descreption\"}",
+					"raw": "{\"title\":\"Arabic\",\"desc\":\"Arabic descreption\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -60,12 +86,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/courses/add",
-					"protocol": "http",
+					"raw": "{{url}}/courses/add",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses",
 						"add"
@@ -77,15 +101,23 @@
 		{
 			"name": "delete course by Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/courses/delete/1",
-					"protocol": "http",
+					"raw": "{{url}}/courses/delete/1",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses",
 						"delete",
@@ -98,6 +130,16 @@
 		{
 			"name": "update course by Id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
@@ -110,12 +152,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/courses/update/2",
-					"protocol": "http",
+					"raw": "{{url}}/courses/update/2",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses",
 						"update",
@@ -128,15 +168,23 @@
 		{
 			"name": "search and sort by course title",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/courses//?title=math&sort=title",
-					"protocol": "http",
+					"raw": "{{url}}/courses//?title=Mathematics&sort=title",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses",
 						"",
@@ -145,7 +193,7 @@
 					"query": [
 						{
 							"key": "title",
-							"value": "math"
+							"value": "Mathematics"
 						},
 						{
 							"key": "sort",
@@ -159,15 +207,23 @@
 		{
 			"name": "search and sort by Id desc",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/courses//?id=2&sort=id_desc",
-					"protocol": "http",
+					"raw": "{{url}}/courses//?id=2",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses",
 						"",
@@ -180,7 +236,8 @@
 						},
 						{
 							"key": "sort",
-							"value": "id_desc"
+							"value": "id_desc",
+							"disabled": true
 						}
 					]
 				}
@@ -190,38 +247,39 @@
 		{
 			"name": "search and sort by empty descreption_desc",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/courses/?desc=&sort=desc_desc",
-					"protocol": "http",
+					"raw": "{{url}}/courses/?desc= ",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "3000",
 					"path": [
 						"courses",
 						""
 					],
 					"query": [
 						{
-							"key": "desc",
-							"value": ""
+							"key": "sort",
+							"value": "desc_desc",
+							"disabled": true
 						},
 						{
-							"key": "sort",
-							"value": "desc_desc"
+							"key": "desc",
+							"value": " "
 						}
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}
