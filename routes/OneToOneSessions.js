@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const oneToOneSessionsMod = require("../models/oneToOneSessions");
-const oneToOneSessionsController = require("../controllers/oneToOneSessions");
+const oneToOneSessionsController = require("../controllers/OneToOneSessions");
 // res.send("Router")
 
 router.get("/", oneToOneSessionsController.list);

@@ -1,26 +1,27 @@
 //controllers/oneToOneSessions.js
 const oneToOneSessionsMod = require("../models/oneToOneSessions");
+
 exports.list = (req, res) => {
-  const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
+  const { id, timestamp, subject, sort, page, pageSize } = req.query; // Get the query parameters from the URL
 
   // Build the filtering object based on the provided parameters
   const filter = {};
-  if (title) {
-    filter.title = title;
+  if (timestamp) {
+    filter.timestamp = timestamp;
   }
   if (id) {
     filter.id = id;
   }
-  if (desc) {
-    filter.desc = desc;
+  if (subject) {
+    filter.subject = subject;
   }
 
   // Build the sorting object based on the provided sort parameter
   const sortOptions = [];
-  if (sort === "title") {
-    sortOptions.push(["title", "ASC"]);
-  } else if (sort === "title_desc") {
-    sortOptions.push(["title", "DESC"]);
+  if (sort === "timestamp") {
+    sortOptions.push(["timestamp", "ASC"]);
+  } else if (sort === "timestamp_desc") {
+    sortOptions.push(["timestamp", "DESC"]);
   } else if (sort === "id") {
     sortOptions.push(["id", "ASC"]);
   } else if (sort === "id_desc") {
@@ -47,8 +48,10 @@ exports.list = (req, res) => {
     .then((mods) => {
       const oneToOneSessionsData = mods.map((oneToOneSessions) => ({
         id: oneToOneSessions.dataValues.id,
-        title: oneToOneSessions.dataValues.title,
-        desc: oneToOneSessions.dataValues.desc,
+        tittimestample: oneToOneSessions.dataValues.timestamp,
+        duration: oneToOneSessions.dataValues.duration,
+        subject: oneToOneSessions.dataValues.subject,
+        description: oneToOneSessions.dataValues.description,
       }));
       if (oneToOneSessionsData.length === 0) {
         res.send("No thing added yet");
@@ -80,35 +83,40 @@ exports.getById = async (req, res) => {
     })
     .catch((error) => res.status(400).send(error));
 };
-exports.create = async (req, res) => {
-  const { title, desc } = req.body; // Assuming you are receiving the data in the request body
 
-  // Post request
+// Post request
+exports.create = async (req, res) => {
+  const { timestamp, duration, subject, description } = req.body;
+  console.log("========================================", req.body);
   oneToOneSessionsMod
     .create({
-      title: title,
-      desc: desc,
+      timestamp: timestamp,
+      duration: duration,
+      subject: subject,
+      description: description,
     })
-    .then((newoneToOneSessions) => {
+    .then(() => {
       console.log("New oneToOneSessions added:");
 
-      res.sendStatus(201); // Send a 201 status code to indicate successful creation
+      res.status(201).send("New oneToOneSessions added:");
     })
     .catch((err) => {
       console.error("Error adding new oneToOneSessions:", err);
-      res.sendStatus(500); // Send a 500 status code for internal server error
+      res.status(500).send("Error adding new oneToOneSessions:");
     });
 };
 
 exports.update = async (req, res) => {
   const { id } = req.params; // Get the oneToOneSessions ID from the URL parameter
-  const { title, desc } = req.body; // Get the updated data from the request body
+  const { timestamp, duration, subject, description } = req.body;
 
   oneToOneSessionsMod
     .update(
       {
-        title: title,
-        desc: desc,
+        timestamp: timestamp,
+        duration: duration,
+        subject: subject,
+        description: description,
       },
       {
         where: { id: id },
@@ -117,15 +125,15 @@ exports.update = async (req, res) => {
     .then((result) => {
       if (result[0] === 1) {
         console.log("oneToOneSessions updated successfully");
-        res.sendStatus(200);
+        res.status(200).send("oneToOneSessions updated successfully");
       } else {
         console.log("oneToOneSessions not found or not updated");
-        res.sendStatus(404);
+        res.status(404).send("oneToOneSessions not found or not updated");
       }
     })
     .catch((err) => {
       console.error("Error updating oneToOneSessions:", err);
-      res.sendStatus(500);
+      res.status(500).send("Error updating oneToOneSessions:");
     });
 };
 
@@ -139,15 +147,15 @@ exports.delete = async (req, res) => {
     .then((result) => {
       if (result === 1) {
         console.log("oneToOneSessions deleted successfully");
-        res.sendStatus(200);
+        res.status(200).send("oneToOneSessions deleted successfully");
       } else {
         console.log("oneToOneSessions not found or not deleted");
-        res.sendStatus(404);
+        res.status(404).send("oneToOneSessions not found or not deleted");
       }
     })
     .catch((err) => {
       console.error("Error deleting oneToOneSessions", err);
-      res.sendStatus(500);
+      res.status(500).send("Error deleting oneToOneSessions");
     });
 };
 exports.test = async (req, res) => {
