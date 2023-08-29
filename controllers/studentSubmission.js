@@ -2,12 +2,12 @@
 
 const studentSubmissionMod = require("../models/studentSubmission");
 exports.list = (req, res) => {
-  const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
+  const { content, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
 
   // Build the filtering object based on the provided parameters
   const filter = {};
-  if (title) {
-    filter.title = title;
+  if (content) {
+    filter.content = content;
   }
   if (id) {
     filter.id = id;
@@ -18,10 +18,10 @@ exports.list = (req, res) => {
 
   // Build the sorting object based on the provided sort parameter
   const sortOptions = [];
-  if (sort === "title") {
-    sortOptions.push(["title", "ASC"]);
-  } else if (sort === "title_desc") {
-    sortOptions.push(["title", "DESC"]);
+  if (sort === "content") {
+    sortOptions.push(["content", "ASC"]);
+  } else if (sort === "content_desc") {
+    sortOptions.push(["content", "DESC"]);
   } else if (sort === "id") {
     sortOptions.push(["id", "ASC"]);
   } else if (sort === "id_desc") {
@@ -48,8 +48,7 @@ exports.list = (req, res) => {
     .then((mods) => {
       const studentSubmissionData = mods.map((studentSubmission) => ({
         id: studentSubmission.dataValues.id,
-        title: studentSubmission.dataValues.title,
-        desc: studentSubmission.dataValues.desc,
+        content: studentSubmission.dataValues.content,
       }));
       if (studentSubmissionData.length === 0) {
         res.send("No thing added yet");
@@ -62,7 +61,7 @@ exports.list = (req, res) => {
       res.sendStatus(500);
     });
 };
-//studentSubmission/?title=math&sort=title :  studentSubmission with the title equal to "math", sorted in ascending order of titles.
+//studentSubmission/?content=math&sort=content :  studentSubmission with the content equal to "math", sorted in ascending order of contents.
 //studentSubmission/?id=2&sort=id_desc :  studentSubmissionwith id equal to 2, sorted in descending order of IDs.
 //studentSubmission/?desc=&sort=desc_desc :  studentSubmission with an empty desc (description), sorted in descending order of descriptions.
 // Filter by parameters with sorting
@@ -81,35 +80,34 @@ exports.getById = async (req, res) => {
     })
     .catch((error) => res.status(400).send(error));
 };
-exports.create = async (req, res) => {
-  const { title, desc } = req.body; // Assuming you are receiving the data in the request body
 
-  // Post request
+// Post request
+exports.create = async (req, res) => {
+  const { content } = req.body; // Assuming you are receiving the data in the request body
+
   studentSubmissionMod
     .create({
-      title: title,
-      desc: desc,
+      content: content,
     })
     .then((newstudentSubmission) => {
-      console.log("New studentSubmissionadded:");
+      console.log("New studentSubmission added:");
 
-      res.sendStatus(201); // Send a 201 status code to indicate successful creation
+      res.status(201).send("New studentSubmission added:");
     })
     .catch((err) => {
       console.error("Error adding new studentSubmission:", err);
-      res.sendStatus(500); // Send a 500 status code for internal server error
+      res.status(500).send("Error adding new studentSubmission:");
     });
 };
 
 exports.update = async (req, res) => {
   const { id } = req.params; // Get the studentSubmissionID from the URL parameter
-  const { title, desc } = req.body; // Get the updated data from the request body
+  const { content } = req.body; // Get the updated data from the request body
 
   studentSubmissionMod
     .update(
       {
-        title: title,
-        desc: desc,
+        content: content,
       },
       {
         where: { id: id },
@@ -118,15 +116,15 @@ exports.update = async (req, res) => {
     .then((result) => {
       if (result[0] === 1) {
         console.log("studentSubmission updated successfully");
-        res.sendStatus(200);
+        res.status(200).send("studentSubmission updated successfully");
       } else {
         console.log("studentSubmission not found or not updated");
-        res.sendStatus(404);
+        res.status(404).send("studentSubmission not found or not updated");
       }
     })
     .catch((err) => {
       console.error("Error updating studentSubmission:", err);
-      res.sendStatus(500);
+      res.status(500).send("Error updating studentSubmission");
     });
 };
 
@@ -140,10 +138,10 @@ exports.delete = async (req, res) => {
     .then((result) => {
       if (result === 1) {
         console.log("studentSubmission deleted successfully");
-        res.sendStatus(200);
+        res.status(200).send("studentSubmission deleted successfully");
       } else {
         console.log("studentSubmission not found or not deleted");
-        res.sendStatus(404);
+        res.status(404).send("studentSubmission not found or not deleted");
       }
     })
     .catch((err) => {

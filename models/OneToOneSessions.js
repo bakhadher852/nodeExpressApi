@@ -23,7 +23,7 @@ const oneToOneSessions = db.define("oneToOneSessions", {
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 });
 //If the table not exict it will creat it in DB
