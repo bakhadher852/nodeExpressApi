@@ -89,7 +89,7 @@ exports.create = async (req, res) => {
     .create({
       content: content,
     })
-    .then((newstudentSubmission) => {
+    .then(() => {
       console.log("New studentSubmission added:");
 
       res.status(201).send("New studentSubmission added:");

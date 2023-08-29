@@ -2,34 +2,25 @@
 // const Course = require("./models/submissionMarks");
 const submissionMarksMod = require("../models/submissionMarks");
 exports.list = (req, res) => {
-  const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
+  const { mark, id, sort, page, pageSize } = req.query; // Get the query parameters from the URL
 
   // Build the filtering object based on the provided parameters
   const filter = {};
-  if (title) {
-    filter.title = title;
+  if (mark) {
+    filter.mark = mark;
   }
   if (id) {
     filter.id = id;
   }
-  if (desc) {
-    filter.desc = desc;
-  }
 
   // Build the sorting object based on the provided sort parameter
   const sortOptions = [];
-  if (sort === "title") {
-    sortOptions.push(["title", "ASC"]);
-  } else if (sort === "title_desc") {
-    sortOptions.push(["title", "DESC"]);
+  if (sort === "mark") {
+    sortOptions.push(["mark", "ASC"]);
   } else if (sort === "id") {
     sortOptions.push(["id", "ASC"]);
   } else if (sort === "id_desc") {
     sortOptions.push(["id", "DESC"]);
-  } else if (sort === "desc") {
-    sortOptions.push(["desc", "ASC"]);
-  } else if (sort === "desc_desc") {
-    sortOptions.push(["desc", "DESC"]);
   }
 
   // Calculate the offset based on the page number and page size
@@ -48,8 +39,7 @@ exports.list = (req, res) => {
     .then((mods) => {
       const submissionMarks = mods.map((submissionMark) => ({
         id: submissionMark.dataValues.id,
-        title: submissionMark.dataValues.title,
-        desc: submissionMark.dataValues.desc,
+        mark: submissionMark.dataValues.mark,
       }));
       if (submissionMarks.length === 0) {
         res.send("No thing added yet");
@@ -62,7 +52,7 @@ exports.list = (req, res) => {
       res.sendStatus(500);
     });
 };
-//submissionMarks/?title=math&sort=title :  submissionMarks with the title equal to "math", sorted in ascending order of titles.
+//submissionMarks/?mark=math&sort=mark :  submissionMarks with the mark equal to "math", sorted in ascending order of marks.
 //submissionMarks/?id=2&sort=id_desc :  submissionMarkswith id equal to 2, sorted in descending order of IDs.
 //submissionMarks/?desc=&sort=desc_desc :  submissionMarks with an empty desc (description), sorted in descending order of descriptions.
 // Filter by parameters with sorting
@@ -82,34 +72,32 @@ exports.getById = async (req, res) => {
     .catch((error) => res.status(400).send(error));
 };
 exports.create = async (req, res) => {
-  const { title, desc } = req.body; // Assuming you are receiving the data in the request body
+  const { mark } = req.body; // Assuming you are receiving the data in the request body
 
   // Post request
   submissionMarksMod
     .create({
-      title: title,
-      desc: desc,
+      mark: mark,
     })
     .then((newCourse) => {
-      console.log("New submissionMarksadded:");
+      console.log("New submissionMarks added:");
 
-      res.sendStatus(201); // Send a 201 status code to indicate successful creation
+      res.status(201).send("New submissionMarks added:");
     })
     .catch((err) => {
       console.error("Error adding new submissionMarks:", err);
-      res.sendStatus(500); // Send a 500 status code for internal server error
+      res.status(500).send("Error adding new submissionMarks::");
     });
 };
 
 exports.update = async (req, res) => {
   const { id } = req.params; // Get the submissionMarksID from the URL parameter
-  const { title, desc } = req.body; // Get the updated data from the request body
+  const { mark } = req.body; // Get the updated data from the request body
 
   submissionMarksMod
     .update(
       {
-        title: title,
-        desc: desc,
+        mark: mark,
       },
       {
         where: { id: id },
@@ -118,10 +106,10 @@ exports.update = async (req, res) => {
     .then((result) => {
       if (result[0] === 1) {
         console.log("submissionMarks updated successfully");
-        res.sendStatus(200);
+        res.status(200).send("submissionMarks updated successfully");
       } else {
         console.log("submissionMarks not found or not updated");
-        res.sendStatus(404);
+        res.status(404).send("submissionMarks not found or not updated");
       }
     })
     .catch((err) => {
@@ -140,10 +128,10 @@ exports.delete = async (req, res) => {
     .then((result) => {
       if (result === 1) {
         console.log("submissionMarks deleted successfully");
-        res.sendStatus(200);
+        res.status(200).send("submissionMarks deleted successfully");
       } else {
         console.log("submissionMarks not found or not deleted");
-        res.sendStatus(404);
+        res.status(404).send("submissionMarks not found or not deleted");
       }
     })
     .catch((err) => {
