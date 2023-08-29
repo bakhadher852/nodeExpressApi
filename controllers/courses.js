@@ -80,7 +80,7 @@ exports.getById = async (req, res) => {
     .catch((error) => res.status(400).send(error));
 };
 exports.create = async (req, res) => {
-  const { title, desc } = req.body; // Assuming you are receiving the data in the request body
+  const { title, desc, id } = req.body; // Assuming you are receiving the data in the request body
 
   // Post request
   CoursesMod.create({
