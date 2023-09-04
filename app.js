@@ -35,12 +35,6 @@ app.use(errorHandler);
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
 // module.exports = sequelize;
-// console.log(
-//   "====================================app=========================="
-// );
-// console.log(app);
-// console.log(
-//   "====================================app=========================="
-// );
+
 module.exports = PORT;
 module.exports = app;

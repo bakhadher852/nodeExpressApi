@@ -25,3 +25,20 @@ services:
       PGADMIN_DEFAULT_PASSWORD: postgres # Default password for the PGAdmin admin user
     depends_on: # Specifies that the 'pgadmin' service depends on the 'postgres' service
       - postgres
+# To run this Docker Compose file:
+
+# Make sure you have Docker and Docker Compose installed on your system.
+
+# Navigate to the directory where the Docker Compose file is located in your terminal.
+
+# Run the following command to start the defined services:
+# docker-compose up
+# This command will start the PostgreSQL and PGAdmin containers with the specified configurations.
+
+# Access PGAdmin by opening a web browser and navigating to http://localhost:5050. You can log in using the default email and password specified in the Compose file.
+
+# You can use PGAdmin to connect to the PostgreSQL database using the PostgreSQL superuser credentials (postgres/postgres) and manage the database.
+
+# To stop the containers, press Ctrl+C in the terminal where Docker Compose is running, or run:
+# docker-compose down
+# This will stop and remove the containers, but the data will persist in the ./data directory on your host machine, thanks to the volume mapping.

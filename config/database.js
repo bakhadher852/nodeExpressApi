@@ -34,3 +34,14 @@ sequelize
 // createDatabase();
 
 module.exports = sequelize;
+
+//For docker PostgreSQL DB
+// module.exports={
+//   booksPostgresURI:`postgres://postgres:postgres@172.17.0.2:5432/postgres`
+// }
+// const dbconfig = require("../config/databaseconfig");
+
+// //Creating DB connection
+// const sequelize = new Sequelize(dbconfig.booksPostgresURI, {
+//   dialect: "postgres",
+// });
