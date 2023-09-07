@@ -1,0 +1,9 @@
+PORT=PORTNUMBER
+SECRET_KEY=JWT_SECRET_KEY
+
+To create secret key using node
+open new shell
+
+run:
+node
+require('crypto').randomBytes(64).toString('hex')

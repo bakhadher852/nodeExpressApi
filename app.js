@@ -29,7 +29,7 @@ app.use("/contentView", require("./routes/contentView"));
 app.use("/studentSubmission", require("./routes/studentSubmission"));
 app.use("/submissionMarks", require("./routes/submissionMarks"));
 app.use("/oneToOneSessions", require("./routes/oneToOneSessions"));
-
+app.use("/users", require("./routes/users"));
 //Error handler
 app.use(errorHandler);
 
