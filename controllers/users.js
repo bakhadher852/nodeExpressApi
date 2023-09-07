@@ -133,15 +133,84 @@ exports.signup = async (req, res) => {
 };
 
 //////////////////////////update//////////////////////////////
+exports.updateUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const updatedUserData = req.body;
 
-const updateTeacher = async function (req, res, next) {
+    // Check if the user exists
+    const user = await UsersMod.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (updatedUserData.email) {
+      let email = updatedUserData.email;
+      if (!isValid(email)) {
+        return res
+          .status(422)
+          .send({ status: 1002, message: "Email is required" });
+      }
+
+      if (!isValidEmail(email)) {
+        return res.status(422).send({
+          message: "Email should be a valid email address",
+        });
+      }
+
+      const isSameEmail = await UsersMod.findOne({ where: { email: email } });
+
+      if (isSameEmail) {
+        return res.status(422).send({
+          message: "This Email-Id is same please enter a new one to update",
+        });
+      }
+    }
+    //validate username
+    if (updatedUserData.username) {
+      let username = updatedUserData.username;
+      const isSameUsername = await UsersMod.findOne({
+        where: { username: username },
+      });
+
+      if (isSameUsername) {
+        return res.status(422).send({
+          message: "username is same please enter a new one to update",
+        });
+      }
+    }
+    // Update user data
+    if (updatedUserData.username) {
+      user.username = updatedUserData.username;
+    }
+
+    if (updatedUserData.email) {
+      user.email = updatedUserData.email;
+    }
+
+    // Hash and update the password (if provided)
+    if (updatedUserData.password) {
+      const hashedPassword = await bcrypt.hash(updatedUserData.password, 10);
+      user.password = hashedPassword;
+    }
+
+    // Save the updated user data to the database
+    await user.save();
+
+    res.json({ message: "User updated successfully" });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+///////////
+const update = async function (req, res, next) {
   try {
     const teacherId = req.params.id;
 
     if (!isValid(teacherId)) {
-      return res
-        .status(422)
-        .send({ status: 1003, message: "Teacher-Id is not valid" });
+      return res.status(422).send({ message: "Teacher-Id is not valid" });
     }
 
     const enteredID = await UsersMod.findByPk(teacherId);
@@ -149,7 +218,7 @@ const updateTeacher = async function (req, res, next) {
     if (!enteredID) {
       return res
         .status(422)
-        .send({ status: 1006, message: "Provided Teacher-ID does not exists" });
+        .send({ message: "Provided Teacher-ID does not exists" });
     }
 
     const data = req.body;
@@ -161,127 +230,13 @@ const updateTeacher = async function (req, res, next) {
     if (!Object.keys(data).length && typeof files === "undefined") {
       return res
         .status(422)
-        .send({ status: 1002, msg: " Please provide some data to update" });
-    }
-
-    if ("fullName" in data) {
-      if (!isValid(fullName)) {
-        return res
-          .status(422)
-          .send({ status: 1002, message: "Full Name name is required" });
-      }
-
-      const isSameFullName = await UsersMod.findOne({
-        where: { fullName: fullName },
-      });
-
-      if (isSameFullName) {
-        return res.status(422).send({
-          status: 1008,
-          message: "fullname is same please enter a new one to update",
-        });
-      }
-
-      dataObject["fullName"] = fullName;
-    }
-
-    if ("email" in data) {
-      if (!isValid(email)) {
-        return res
-          .status(422)
-          .send({ status: 1002, message: "Email is required" });
-      }
-
-      if (!isValidEmail(email)) {
-        return res.status(422).send({
-          status: 1003,
-          message: "Email should be a valid email address",
-        });
-      }
-
-      const isSameEmail = await UsersMod.findOne({ where: { email: email } });
-
-      if (isSameEmail) {
-        return res.status(422).send({
-          status: 1008,
-          message: "This Email-Id is same please enter a new one to update",
-        });
-      }
-
-      dataObject["email"] = email;
-    }
-
-    if ("mobile" in data) {
-      if (!isValid(mobile)) {
-        return res
-          .status(422)
-          .send({ status: 1002, message: "Mobile No. is required" });
-      }
-
-      if (!isValidMobile(mobile)) {
-        return res
-          .status(422)
-          .send({ status: 1003, message: "Please enter a valid Mobile no" });
-      }
-
-      const isSameMobile = await UsersMod.findOne({
-        where: { mobile: mobile },
-      });
-
-      if (isSameMobile) {
-        return res.status(422).send({
-          status: 1008,
-          message: "The Mobile No. is same please enter a new one to update",
-        });
-      }
-
-      dataObject["mobile"] = mobile;
-    }
-
-    if ("password" in data) {
-      if (!isValid(password)) {
-        return res
-          .status(422)
-          .send({ status: 1002, message: "Password is required" });
-      }
-
-      if (password.length < 8) {
-        return res.status(422).send({
-          status: 1003,
-          message: "Your password must be at least 8 characters",
-        });
-      }
-      if (password.length > 15) {
-        return res.status(422).send({
-          status: 1003,
-          message: "Password cannot be more than 15 characters",
-        });
-      }
-
-      dataObject["password"] = password;
-    }
-
-    if ("role" in data) {
-      if (!isValid(role)) {
-        return res
-          .status(422)
-          .send({ status: 1002, message: "Role is required" });
-      }
-
-      if (!(role == "teacher" || role == "Teacher")) {
-        return res
-          .status(422)
-          .send({ status: 1002, message: "Role can be Teacher Only" });
-      }
-
-      dataObject["role"] = role;
+        .send({ msg: " Please provide some data to update" });
     }
 
     next();
   } catch (error) {
     console.log(error.message);
     return res.status(422).send({
-      status: 1001,
       msg: "Something went wrong Please check back again",
     });
   }
