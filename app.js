@@ -6,9 +6,11 @@ const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const { authentication } = require("./middleware/authentication");
 const { authorization } = require("./middleware/authorization");
+const { encryptId, decryptId } = require("./middleware/encrypt");
 const { TeacherAccessOnly } = require("./middleware/checkTeacher");
 app.use(bodyParser.json());
 const errorHandler = require("./middleware/errorHandler");
+
 // Set EJS as the view engine
 app.set("view engine", "ejs");
 try {
