@@ -87,7 +87,7 @@ exports.getById = async (req, res) => {
 // Post request
 exports.create = async (req, res) => {
   const { timestamp, duration, subject, description } = req.body;
-  console.log("========================================", req.body);
+
   oneToOneSessionsMod
     .create({
       timestamp: timestamp,

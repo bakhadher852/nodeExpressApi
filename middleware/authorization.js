@@ -1,6 +1,6 @@
+// middleware/authorization.js
 const jwt = require("jsonwebtoken");
-const db = require("../models");
-const { User } = db;
+const UsersMod = require("../models/users");
 
 //----------------------------------------authorization----------------------------------------------------*//
 
@@ -8,8 +8,8 @@ exports.authorization = async function (req, res, next) {
   try {
     const verifiedtoken = req.verifiedtoken;
 
-    const user = await User.findByPk(verifiedtoken.id);
-    const userRole = user.role;
+    const userData = await UsersMod.findByPk(verifiedtoken.id);
+    const userRole = userData.role;
 
     let tokenRole = verifiedtoken.role;
 
@@ -23,7 +23,7 @@ exports.authorization = async function (req, res, next) {
     }
   } catch (error) {
     res.status(401).send({
-      message: "Something is wrong please check back again after sometime",
+      message: "Something is wrong In authorization",
     });
   }
 };

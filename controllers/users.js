@@ -92,7 +92,7 @@ exports.login = (req, res) => {
 ///////////////////////SignUp/////////////////////
 
 exports.signup = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, role } = req.body;
   if (!isValidEmail(email)) {
     return res.status(422).send({
       message: "Email should be a valid email address",
@@ -101,10 +101,7 @@ exports.signup = async (req, res) => {
   const isRegisteredUsername = await UsersMod.findOne({
     where: { username: username },
   });
-  console.log(
-    "=====================isRegisteredUsername=======",
-    isRegisteredUsername
-  );
+
   const isRegisteredEmail = await UsersMod.findOne({ where: { email: email } });
   if (isRegisteredUsername) {
     return res.status(400).send("Username already exists");
@@ -121,6 +118,7 @@ exports.signup = async (req, res) => {
         username: username,
         email: email,
         password: hashedPassword,
+        role: role,
       });
     })
     .then((user) => {

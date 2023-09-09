@@ -5,7 +5,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const { authentication } = require("./middleware/authentication");
-// const { authorization } = require("./middleware/authorization");
+const { authorization } = require("./middleware/authorization");
+const { TeacherAccessOnly } = require("./middleware/checkTeacher");
 app.use(bodyParser.json());
 const errorHandler = require("./middleware/errorHandler");
 // Set EJS as the view engine
@@ -22,12 +23,18 @@ try {
 }
 
 // routes
-app.use("/courses", authentication, require("./routes/courses"));
+app.use(
+  "/courses",
+  authentication,
+
+  TeacherAccessOnly,
+  require("./routes/courses")
+);
 app.use("/sections", authentication, require("./routes/sections"));
 app.use("/units", authentication, require("./routes/units"));
 app.use("/lessons", authentication, require("./routes/lessons"));
 app.use("/lessonContents", authentication, require("./routes/lessonContents"));
-app.use("/contentView", authentication, require("./routes/contentView"));
+app.use("/contentView", require("./routes/contentView"));
 app.use(
   "/studentSubmission",
   authentication,
