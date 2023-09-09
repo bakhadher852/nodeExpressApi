@@ -4,7 +4,7 @@ const { User } = db;
 
 //----------------------------------------authorization----------------------------------------------------*//
 
-const authorization = async function (req, res, next) {
+exports.authorization = async function (req, res, next) {
   try {
     const verifiedtoken = req.verifiedtoken;
 
@@ -14,22 +14,16 @@ const authorization = async function (req, res, next) {
     let tokenRole = verifiedtoken.role;
 
     if (tokenRole !== userRole) {
-      return res
-        .status(401)
-        .send({
-          message:
-            "Access DeniedYou dont have correct privilege to perform this operation",
-        });
+      return res.status(401).send({
+        message:
+          "Access DeniedYou dont have correct privilege to perform this operation",
+      });
     } else {
       next();
     }
   } catch (error) {
-    res
-      .status(401)
-      .send({
-        message: "Something is wrong please check back again after sometime",
-      });
+    res.status(401).send({
+      message: "Something is wrong please check back again after sometime",
+    });
   }
 };
-
-module.exports = { authorization };

@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
+const { authentication } = require("./middleware/authentication");
+// const { authorization } = require("./middleware/authorization");
 app.use(bodyParser.json());
 const errorHandler = require("./middleware/errorHandler");
 // Set EJS as the view engine
@@ -20,16 +22,28 @@ try {
 }
 
 // routes
-app.use("/courses", require("./routes/courses"));
-app.use("/sections", require("./routes/sections"));
-app.use("/units", require("./routes/units"));
-app.use("/lessons", require("./routes/lessons"));
-app.use("/lessonContents", require("./routes/lessonContents"));
-app.use("/contentView", require("./routes/contentView"));
-app.use("/studentSubmission", require("./routes/studentSubmission"));
-app.use("/submissionMarks", require("./routes/submissionMarks"));
-app.use("/oneToOneSessions", require("./routes/oneToOneSessions"));
-app.use("/users", require("./routes/users"));
+app.use("/courses", authentication, require("./routes/courses"));
+app.use("/sections", authentication, require("./routes/sections"));
+app.use("/units", authentication, require("./routes/units"));
+app.use("/lessons", authentication, require("./routes/lessons"));
+app.use("/lessonContents", authentication, require("./routes/lessonContents"));
+app.use("/contentView", authentication, require("./routes/contentView"));
+app.use(
+  "/studentSubmission",
+  authentication,
+  require("./routes/studentSubmission")
+);
+app.use(
+  "/submissionMarks",
+  authentication,
+  require("./routes/submissionMarks")
+);
+app.use(
+  "/oneToOneSessions",
+  authentication,
+  require("./routes/oneToOneSessions")
+);
+app.use("/users", authentication, require("./routes/users"));
 //Error handler
 app.use(errorHandler);
 

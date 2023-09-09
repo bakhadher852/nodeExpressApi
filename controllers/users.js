@@ -62,13 +62,15 @@ exports.login = (req, res) => {
       if (!user) {
         return res.status(400).send("Username does not exist");
       }
-
+      const accessToken = jwt.sign(userData, process.env.SECRET_KEY);
       bcrypt
         .compare(password, user.password)
         .then((password) => {
           if (password) {
             // Passwords match, so the user is authenticated
-            res.send("Login Successful");
+            res
+              .status(401)
+              .send({ message: "Login Successful", Token: accessToken });
           } else {
             // Passwords do not match
             res.status(401).send("Password is incorrect");
