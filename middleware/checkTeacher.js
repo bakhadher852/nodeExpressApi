@@ -1,9 +1,10 @@
 // middleware/checkTeacher.js
 const UsersMod = require("../models/users");
-const db = require("../config/database");
+
 exports.TeacherAccessOnly = async function (req, res, next) {
   try {
     const verifiedtoken = req.verifiedtoken;
+    //get the user from DB base on username
     const user = await UsersMod.findOne({
       where: { username: verifiedtoken.username },
     });

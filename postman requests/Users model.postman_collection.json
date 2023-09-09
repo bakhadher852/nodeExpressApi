@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\":\"mohammed\",\"email\":\"mohammedbakhadher@gmail.com\",\"password\":\"12345\"}",
+					"raw": "{\"username\":\"mohammed\",\"email\":\"mohammedbakhadher@gmail.com\",\"password\":\"12345\",\"role\":\"student\"}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -1,12 +1,15 @@
 // models/users.js
+const { v4: uuidv4 } = require("uuid");
+
 const DataTypes = require("sequelize");
 const db = require("../config/database");
 
 const user = db.define("users", {
   id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
+    allowNull: false,
     primaryKey: true,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
   },
   username: {
     type: DataTypes.STRING,
@@ -41,6 +44,7 @@ const user = db.define("users", {
 //     console.log("courses talbel NOT added ", err);
 //   });
 user.sync();
+
 module.exports = user;
 // User.sync() - This creates the table if it doesn't exist (and does nothing if it already exists)
 // User.sync({ force: true }) - This creates the table, dropping it first if it already existed
