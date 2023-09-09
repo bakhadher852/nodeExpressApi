@@ -1,5 +1,6 @@
 //controllers/submissionMarks.js
-// const Course = require("./models/submissionMarks");
+
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const submissionMarksMod = require("../models/submissionMarks");
 exports.list = (req, res) => {
   const { mark, id, sort, page, pageSize } = req.query; // Get the query parameters from the URL

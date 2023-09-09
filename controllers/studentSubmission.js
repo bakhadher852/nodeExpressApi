@@ -1,5 +1,5 @@
 //controllers/studentSubmission.js
-
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const studentSubmissionMod = require("../models/studentSubmission");
 exports.list = (req, res) => {
   const { content, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL

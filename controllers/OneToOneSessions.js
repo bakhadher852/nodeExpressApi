@@ -1,4 +1,5 @@
 //controllers/oneToOneSessions.js
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const oneToOneSessionsMod = require("../models/oneToOneSessions");
 
 exports.list = (req, res) => {
@@ -47,7 +48,7 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const oneToOneSessionsData = mods.map((oneToOneSessions) => ({
-        id: oneToOneSessions.dataValues.id,
+        id: encryptId(oneToOneSessions.dataValues.id),
         tittimestample: oneToOneSessions.dataValues.timestamp,
         duration: oneToOneSessions.dataValues.duration,
         subject: oneToOneSessions.dataValues.subject,
@@ -79,6 +80,8 @@ exports.getById = async (req, res) => {
           message: "oneToOneSessions Not Found",
         });
       }
+      const plainOneToOneSessions = oneToOneSessions.toJSON();
+      plainOneToOneSessions.id = encryptId(oneToOneSessions.id);
       res.json(oneToOneSessions);
     })
     .catch((error) => res.status(400).send(error));

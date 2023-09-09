@@ -1,4 +1,5 @@
 //controllers/users.js
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const UsersMod = require("../models/users");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");

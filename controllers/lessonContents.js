@@ -1,4 +1,5 @@
 // controllers/lessonContents.js
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const lessonContents = require("../models/lessonContents");
 
 exports.list = (req, res) => {
@@ -53,7 +54,7 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const lessonContentsData = mods.map((lessonContents) => ({
-        id: lessonContents.dataValues.id,
+        id: encryptId(lessonContents.dataValues.id),
         title: lessonContents.dataValues.title,
         desc: lessonContents.dataValues.desc,
         type: lessonContents.dataValues.type,
@@ -82,7 +83,9 @@ exports.getById = async (req, res) => {
           message: "Lesson Content Not Found",
         });
       }
-      res.json(lessonContents);
+      const plainLessonContents = lessonContents.toJSON();
+      plainLessonContents.id = encryptId(lessonContents.id);
+      res.json(plainLessonContents);
     })
     .catch((error) => res.status(400).send(error));
 };

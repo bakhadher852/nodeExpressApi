@@ -1,5 +1,7 @@
 //controllers/courses.js
 // const Course = require("./models/courses");
+
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const CoursesMod = require("../models/courses");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
@@ -46,7 +48,7 @@ exports.list = (req, res) => {
   })
     .then((mods) => {
       const courseData = mods.map((course) => ({
-        id: course.dataValues.id,
+        id: encryptId(course.dataValues.id),
         title: course.dataValues.title,
         desc: course.dataValues.desc,
       }));
@@ -75,7 +77,11 @@ exports.getById = async (req, res) => {
           message: "Course Not Found",
         });
       }
-      res.json(course);
+      const encryptedId = encryptId(course.id);
+
+      const plainCourse = course.toJSON();
+      plainCourse.id = encryptId(course.id);
+      res.json(plainCourse);
     })
     .catch((error) => res.status(400).send(error));
 };

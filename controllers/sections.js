@@ -1,4 +1,5 @@
 //controllers/sections.js
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const sectionsMod = require("../models/sections");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
@@ -46,7 +47,7 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const sectionData = mods.map((section) => ({
-        id: section.dataValues.id,
+        id: encryptId(section.dataValues.id),
         title: section.dataValues.title,
         desc: section.dataValues.desc,
       }));
@@ -76,7 +77,9 @@ exports.getById = async (req, res) => {
           message: "section Not Found",
         });
       }
-      res.json(section);
+      const plainSection = section.toJSON();
+      plainSection.id = encryptId(section.id);
+      res.json(plainSection);
     })
     .catch((error) => res.status(400).send(error));
 };

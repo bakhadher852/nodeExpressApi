@@ -1,4 +1,5 @@
 //controllers/contentView.js
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const contentViewMod = require("../models/contentView");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
@@ -46,7 +47,7 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const contentViewData = mods.map((contentView) => ({
-        id: contentView.dataValues.id,
+        id: encryptId(contentView.dataValues.id),
         title: contentView.dataValues.title,
         desc: contentView.dataValues.desc,
       }));
@@ -76,7 +77,10 @@ exports.getById = async (req, res) => {
           message: "contentView Not Found",
         });
       }
-      res.json(contentView);
+      const plainContentView = contentView.toJSON();
+      plainContentView.id = encryptId(contentView.id);
+
+      res.json(plainContentView);
     })
     .catch((error) => res.status(400).send(error));
 };

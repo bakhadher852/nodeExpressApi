@@ -1,5 +1,5 @@
 //controllers/lessons.js
-
+const { encryptId, decryptId } = require("../middleware/encrypt");
 const lessonsMod = require("../models/lessons");
 exports.list = (req, res) => {
   const { title, id, desc, sort, page, pageSize } = req.query; // Get the query parameters from the URL
@@ -47,7 +47,7 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const lessonData = mods.map((lesson) => ({
-        id: lesson.dataValues.id,
+        id: encryptId(lesson.dataValues.id),
         title: lesson.dataValues.title,
         desc: lesson.dataValues.desc,
       }));
@@ -77,7 +77,9 @@ exports.getById = async (req, res) => {
           message: "lessons Not Found",
         });
       }
-      res.json(lesson);
+      const plainLesson = lesson.toJSON();
+      plainLesson.id = encryptId(lesson.id);
+      res.json(plainLesson);
     })
     .catch((error) => res.status(400).send(error));
 };
