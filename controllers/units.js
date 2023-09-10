@@ -48,7 +48,7 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const unitData = mods.map((unit) => ({
-        id: unit.dataValues.id,
+        id: encryptId(unit.dataValues.id),
         title: unit.dataValues.title,
         desc: unit.dataValues.desc,
       }));
@@ -78,7 +78,9 @@ exports.getById = async (req, res) => {
           message: "units Not Found",
         });
       }
-      res.json(unit);
+      const plainUnit = unit.toJSON();
+      plainUnit.id = encryptId(unit.id);
+      res.json(plainUnit);
     })
     .catch((error) => res.status(400).send(error));
 };

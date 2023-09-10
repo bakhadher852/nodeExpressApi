@@ -47,7 +47,7 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const studentSubmissionData = mods.map((studentSubmission) => ({
-        id: studentSubmission.dataValues.id,
+        id: encryptId(studentSubmission.dataValues.id),
         content: studentSubmission.dataValues.content,
       }));
       if (studentSubmissionData.length === 0) {
@@ -76,7 +76,9 @@ exports.getById = async (req, res) => {
           message: "studentSubmissionNot Found",
         });
       }
-      res.json(studentSubmission);
+      const plainStudentSubmission = studentSubmission.toJSON();
+      plainStudentSubmission.id = encryptId(studentSubmission.id);
+      res.json(plainStudentSubmission);
     })
     .catch((error) => res.status(400).send(error));
 };

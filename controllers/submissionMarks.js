@@ -39,13 +39,15 @@ exports.list = (req, res) => {
     })
     .then((mods) => {
       const submissionMarks = mods.map((submissionMark) => ({
-        id: submissionMark.dataValues.id,
+        id: encryptId(submissionMark.dataValues.id),
         mark: submissionMark.dataValues.mark,
       }));
       if (submissionMarks.length === 0) {
         res.send("No thing added yet");
       } else {
-        res.json(submissionMarks);
+        const plainSubmissionMarks = submissionMarks.toJSON();
+        plainSubmissionMarks.id = encryptId(submissionMarks.id);
+        res.json(plainSubmissionMarks);
       }
     })
     .catch((err) => {
@@ -68,7 +70,9 @@ exports.getById = async (req, res) => {
           message: "submissionMarksNot Found",
         });
       }
-      res.json(submissionMarks);
+      const plainSubmissionMark = submissionMarks.toJSON();
+      plainSubmissionMark.id = encryptId(submissionMarks.id);
+      res.json(plainSubmissionMark);
     })
     .catch((error) => res.status(400).send(error));
 };

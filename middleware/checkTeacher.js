@@ -4,9 +4,10 @@ const UsersMod = require("../models/users");
 exports.TeacherAccessOnly = async function (req, res, next) {
   try {
     const verifiedtoken = req.verifiedtoken;
-    //get the user from DB base on username
+
+    //get the user from DB base on id
     const user = await UsersMod.findOne({
-      where: { username: verifiedtoken.username },
+      where: { id: verifiedtoken.id },
     });
 
     if (user.role !== "teacher") {

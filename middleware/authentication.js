@@ -15,14 +15,16 @@ exports.authentication = async function (req, res, next) {
     if (!verifiedtoken)
       return res.status(400).send({ message: "token is invalid" });
 
-    // let exp = verifiedtoken.option.expiresIn;
-    // let iatNow = Math.floor(Date.now() / 1000);
-    // if (exp < iatNow) {
-    //   return res
-    //     .status(401)
-    //     .send({ message: "session expired, please login again" });
-    // }
-    //For authorization
+    let exp = verifiedtoken.exp;
+
+    let iatNow = Math.floor(Date.now() / 1000);
+
+    if (exp < iatNow) {
+      return res
+        .status(401)
+        .send({ message: "session expired, please login again" });
+    }
+    // For authorization
     req.verifiedtoken = verifiedtoken;
 
     next();

@@ -63,11 +63,16 @@ exports.login = (req, res) => {
       if (!user) {
         return res.status(400).send("Username does not exist");
       }
-      const accessToken = jwt.sign(userData, process.env.SECRET_KEY);
+
       bcrypt
         .compare(password, user.password)
         .then((password) => {
           if (password) {
+            const expiresIn = "5m";
+            const accessToken = jwt.sign(
+              { userData, id: user.id, expiresIn },
+              process.env.SECRET_KEY
+            );
             // Passwords match, so the user is authenticated
             res
               .status(401)

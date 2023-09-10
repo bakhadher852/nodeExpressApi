@@ -52,7 +52,7 @@ app.use(
   authentication,
   require("./routes/oneToOneSessions")
 );
-app.use("/users", authentication, require("./routes/users"));
+app.use("/users", require("./routes/users"));
 //Error handler
 app.use(errorHandler);
 
