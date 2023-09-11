@@ -5,7 +5,7 @@ const UsersMod = require("../models/users");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+const { v4: uuidv4 } = require("uuid");
 ////////////////////////// -GLOBAL- //////////////////////
 const isValid = function (value) {
   if (!value || typeof value != "string" || value.trim().length == 0)
@@ -153,6 +153,81 @@ exports.signup = async (req, res) => {
       res.status(500).send("Signup error");
     });
 };
+/////////////////////reset-password////////////////////////////
+exports.resetPassword = async (req, res) => {
+  const { email } = req.body;
+
+  // Check if the user with the provided email exists in the database
+  const user = await UsersMod.findOne({ where: { email: email } });
+
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+
+  // Generate a unique reset token
+  function generateResetToken() {
+    return uuidv4();
+  }
+
+  const resetToken = generateResetToken();
+
+  // Store the reset token in the database (e.g., in a resetToken field in the users table)
+  user.resetToken = resetToken;
+
+  try {
+    await user.save();
+    // Send a password reset email to the user
+    // const resetLink = `https://example.com/reset-password/${resetToken}`;
+    // const mailOptions = {
+    //   from: senderEmail,
+    //   to: email,
+    //   subject: "Password Reset",
+    //   text: `Click the following link to reset your password: ${resetLink}`,
+    // };
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //   if (error) {
+    //     console.error("Error sending password reset email:", error);
+    //     return res.status(500).send("Error sending password reset email");
+    //   }
+    //   console.log("Password reset email sent:", info.response);
+    //   res.send({
+    //     message: "Password reset email sent successfully",
+    //     resetToken: resetToken,
+    //   });
+    // });
+
+    res.send({
+      message: "Password reset email sent successfully",
+      resetToken: resetToken,
+    });
+  } catch (error) {
+    console.error("Error saving reset token:", error);
+    res.status(500).send("Error initiating password reset");
+  }
+};
+///////////////////////resetToken/////////////////////////////////
+exports.resetToken = async (req, res) => {
+  const ResetToken = req.params.resetToken;
+  const { newPassword } = req.body;
+  console.log("===============newPassword===================", newPassword);
+  console.log("================ResetToken==================", ResetToken);
+
+  // Check if the reset token exists in the database and is valid
+  const user = await UsersMod.findOne({ where: { resetToken: ResetToken } });
+  console.log("==================================", user);
+
+  if (!user) {
+    return res.status(404).send("Invalid or expired reset token");
+  }
+
+  // Update the user's password with the new password
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  user.password = hashedPassword;
+  user.resetToken = null; // Clear the reset token
+  await user.save();
+
+  res.send("Password reset successfully");
+};
 
 //////////////////////////update//////////////////////////////
 exports.updateUser = async (req, res) => {
@@ -224,43 +299,6 @@ exports.updateUser = async (req, res) => {
   } catch (error) {
     console.error("Error updating user:", error);
     res.status(500).json({ message: "Internal server error" });
-  }
-};
-///////////
-const update = async function (req, res, next) {
-  try {
-    const teacherId = req.params.id;
-
-    if (!isValid(teacherId)) {
-      return res.status(422).send({ message: "Teacher-Id is not valid" });
-    }
-
-    const enteredID = await UsersMod.findByPk(teacherId);
-
-    if (!enteredID) {
-      return res
-        .status(422)
-        .send({ message: "Provided Teacher-ID does not exists" });
-    }
-
-    const data = req.body;
-
-    const { fullName, email, mobile, password, role } = req.body;
-
-    const dataObject = {};
-
-    if (!Object.keys(data).length && typeof files === "undefined") {
-      return res
-        .status(422)
-        .send({ msg: " Please provide some data to update" });
-    }
-
-    next();
-  } catch (error) {
-    console.log(error.message);
-    return res.status(422).send({
-      msg: "Something went wrong Please check back again",
-    });
   }
 };
 

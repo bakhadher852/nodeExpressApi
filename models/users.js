@@ -27,6 +27,11 @@ const user = db.define("users", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  resetToken: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    defaultValue: null,
+  },
   role: {
     type: DataTypes.ENUM("student", "teacher"), // Define the possible roles
     defaultValue: "student",
