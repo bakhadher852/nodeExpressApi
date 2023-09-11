@@ -1,5 +1,6 @@
 //controllers/users.js
 const { encryptId, decryptId } = require("../middleware/encrypt");
+const { transporter, email: senderEmail } = require("../middleware/nodemailer");
 const UsersMod = require("../models/users");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
@@ -128,8 +129,23 @@ exports.signup = async (req, res) => {
       });
     })
     .then((user) => {
+      const mailOptions = {
+        from: senderEmail,
+        to: email,
+        subject: "Account Registration Confirmation",
+        text: `Welcome, ${username}! Your account has been successfully registered.`,
+      };
+
+      // Send the email
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error("Error sending email:", error);
+        } else {
+          console.log("Email sent:", info.response);
+        }
+      });
       // User registration successful
-      res.send("User registered successfully");
+      res.send("User registered successfully and Email send to User");
     })
     .catch((error) => {
       console.error("Error registering user:", error);

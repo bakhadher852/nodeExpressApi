@@ -1,5 +1,8 @@
 PORT=PORTNUMBER
 SECRET_KEY=JWT_SECRET_KEY
+Email_Password
+
+
 
 To create secret key using node
 open new shell
