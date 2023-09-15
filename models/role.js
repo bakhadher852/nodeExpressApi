@@ -1,5 +1,6 @@
 // models/Role.js
-
+// const endPointMod = require("../models/endPoint");
+// const accessControlMod = require("../models/accessControl");
 const DataTypes = require("sequelize");
 const db = require("../config/database");
 const Role = db.define("Role", {
@@ -14,7 +15,8 @@ const Role = db.define("Role", {
     allowNull: false,
   },
 });
-
+// Role.belongsToMany(endPointMod, { through: accessControlMod });
+// endPointMod.belongsToMany(Role, { through: accessControlMod });
 Role.sync();
 
 module.exports = Role;

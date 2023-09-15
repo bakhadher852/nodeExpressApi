@@ -4,19 +4,19 @@ const Endpoint = require("../models/endPoint"); // Import the Endpoint model
 // Define seed data
 const endpointSeedData = [
   {
-    name: "/courses",
+    name: "getAll",
   },
   {
-    name: "/courses/:id",
+    name: "Get",
   },
   {
-    name: "/courses/add",
+    name: "Create",
   },
   {
-    name: "/courses/delete/:id",
+    name: "Update",
   },
   {
-    name: "/courses/update/:id",
+    name: "Delete",
   },
 ];
 

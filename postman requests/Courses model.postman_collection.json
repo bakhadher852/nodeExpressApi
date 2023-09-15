@@ -49,13 +49,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/courses/2",
+					"raw": "{{url}}/courses/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"courses",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"title\":\"Arabic\",\"desc\":\"Arabic descreption\"}",
+					"raw": "{\"title\":\"English\",\"desc\":\"English descreption\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,13 +86,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/courses/add",
+					"raw": "{{url}}/courses",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"courses",
-						"add"
+						"courses"
 					]
 				}
 			},
@@ -114,13 +113,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/courses/delete/1",
+					"raw": "{{url}}/courses/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"courses",
-						"delete",
 						"1"
 					]
 				}
@@ -152,13 +150,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/courses/update/2",
+					"raw": "{{url}}/courses/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"courses",
-						"update",
 						"2"
 					]
 				}

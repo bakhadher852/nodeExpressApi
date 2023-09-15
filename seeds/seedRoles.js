@@ -1,6 +1,6 @@
 // seedRoles.js
-const db = require("../config/database"); // Import your Sequelize instance
-const Role = require("../models/role"); // Import your Role model
+const db = require("../config/database");
+const Role = require("../models/role");
 
 const rolesData = [
   { name: "admin" },
@@ -11,9 +11,8 @@ const rolesData = [
 
 db.sync().then(async () => {
   try {
-    for (const roleData of rolesData) {
-      await Role.create(roleData);
-    }
+    await Role.bulkCreate(rolesData);
+
     console.log("Roles seeded successfully");
   } catch (error) {
     console.error("Error seeding roles:", error);

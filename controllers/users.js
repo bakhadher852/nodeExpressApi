@@ -100,7 +100,8 @@ exports.login = (req, res) => {
 ///////////////////////SignUp/////////////////////
 
 exports.signup = async (req, res) => {
-  const { username, email, password, role } = req.body;
+  const { username, email, password, roleId } = req.body;
+
   if (!isValidEmail(email)) {
     return res.status(422).send({
       message: "Email should be a valid email address",
@@ -126,7 +127,7 @@ exports.signup = async (req, res) => {
         username: username,
         email: email,
         password: hashedPassword,
-        role: role,
+        roleId: roleId,
       });
     })
     .then((user) => {

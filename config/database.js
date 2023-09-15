@@ -27,7 +27,7 @@ async function createDatabase() {
   } catch (error) {
     console.error("Error creating database:", error);
   } finally {
-    sequelize.close(); // Close the connection when done.
+    // sequelize.close(); // Close the connection when done.
   }
 }
 
