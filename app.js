@@ -1,5 +1,5 @@
 //app.js
-const db = require("./config/database");
+const { accessControlMod, endPointMod, roleMod } = require("./all-imports");
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,8 +10,12 @@ const { encryptId, decryptId } = require("./middleware/encrypt");
 const { TeacherAccessOnly } = require("./middleware/checkTeacher");
 app.use(bodyParser.json());
 const errorHandler = require("./middleware/errorHandler");
-
+const runthis = require("./seeds/addRowsToAccessControlWithPermision");
+// const accessControlMod = require("./models/accessControl");
+// const endPointMod = require("./models/endPoint");
+// const roleMod = require("./models/role");
 // Set EJS as the view engine
+runthis();
 app.set("view engine", "ejs");
 try {
   app.get("/", (req, res) => {
@@ -53,6 +57,12 @@ app.use(
   require("./routes/oneToOneSessions")
 );
 app.use("/users", require("./routes/users"));
+
+//assosiations
+
+roleMod.belongsToMany(endPointMod, { through: accessControlMod });
+endPointMod.belongsToMany(roleMod, { through: accessControlMod });
+
 //Error handler
 app.use(errorHandler);
 

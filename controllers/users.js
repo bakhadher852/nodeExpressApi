@@ -5,6 +5,7 @@ const UsersMod = require("../models/users");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 const { v4: uuidv4 } = require("uuid");
 ////////////////////////// -GLOBAL- //////////////////////
 const isValid = function (value) {
@@ -71,7 +72,7 @@ exports.login = (req, res) => {
           if (password) {
             const expiresIn = "5m";
             const accessToken = jwt.sign(
-              { userData, id: user.id, expiresIn },
+              { /*userData*/ user, id: user.id, expiresIn },
               process.env.SECRET_KEY
             );
             // Passwords match, so the user is authenticated
@@ -166,7 +167,7 @@ exports.resetPassword = async (req, res) => {
 
   // Generate a unique reset token
   function generateResetToken() {
-    return uuidv4();
+    return crypto.randomBytes(32).toString("hex");
   }
 
   const resetToken = generateResetToken();
@@ -177,44 +178,37 @@ exports.resetPassword = async (req, res) => {
   try {
     await user.save();
     // Send a password reset email to the user
-    // const resetLink = `https://example.com/reset-password/${resetToken}`;
-    // const mailOptions = {
-    //   from: senderEmail,
-    //   to: email,
-    //   subject: "Password Reset",
-    //   text: `Click the following link to reset your password: ${resetLink}`,
-    // };
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //   if (error) {
-    //     console.error("Error sending password reset email:", error);
-    //     return res.status(500).send("Error sending password reset email");
-    //   }
-    //   console.log("Password reset email sent:", info.response);
-    //   res.send({
-    //     message: "Password reset email sent successfully",
-    //     resetToken: resetToken,
-    //   });
-    // });
-
-    res.send({
-      message: "Password reset email sent successfully",
-      resetToken: resetToken,
+    const resetLink = `http://localhost:3000/users/reset-password/${resetToken}`;
+    const mailOptions = {
+      from: senderEmail,
+      to: email,
+      subject: "Password Reset",
+      text: `Click the following link to reset your password: ${resetLink}`,
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending password reset email:", error);
+        return res.status(500).send("Error sending password reset email");
+      }
+      console.log("Password reset email sent:", info.response);
+      res.send({
+        message: "Password reset email sent successfully",
+        resetToken: resetToken,
+      });
     });
   } catch (error) {
     console.error("Error saving reset token:", error);
     res.status(500).send("Error initiating password reset");
   }
 };
+
 ///////////////////////resetToken/////////////////////////////////
 exports.resetToken = async (req, res) => {
   const ResetToken = req.params.resetToken;
   const { newPassword } = req.body;
-  console.log("===============newPassword===================", newPassword);
-  console.log("================ResetToken==================", ResetToken);
 
   // Check if the reset token exists in the database and is valid
   const user = await UsersMod.findOne({ where: { resetToken: ResetToken } });
-  console.log("==================================", user);
 
   if (!user) {
     return res.status(404).send("Invalid or expired reset token");

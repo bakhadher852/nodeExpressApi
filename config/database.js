@@ -20,18 +20,18 @@ sequelize
 
 //this code to create database if not exist
 
-// async function createDatabase() {
-//   try {
-//     await sequelize.sync({ force: true });
-//     console.log("Database created successfully!");
-//   } catch (error) {
-//     console.error("Error creating database:", error);
-//   } finally {
-//     sequelize.close(); // Close the connection when done.
-//   }
-// }
+async function createDatabase() {
+  try {
+    await sequelize.sync({ alter: true });
+    console.log("Database created successfully!");
+  } catch (error) {
+    console.error("Error creating database:", error);
+  } finally {
+    sequelize.close(); // Close the connection when done.
+  }
+}
 
-// createDatabase();
+createDatabase();
 
 module.exports = sequelize;
 

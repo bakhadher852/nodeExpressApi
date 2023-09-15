@@ -1,5 +1,4 @@
 // models/users.js
-const { v4: uuidv4 } = require("uuid");
 
 const DataTypes = require("sequelize");
 const db = require("../config/database");
@@ -32,11 +31,11 @@ const user = db.define("users", {
     allowNull: true,
     defaultValue: null,
   },
-  role: {
-    type: DataTypes.ENUM("student", "teacher"), // Define the possible roles
-    defaultValue: "student",
-    allowNull: false,
-  },
+  // role: {
+  //   type: DataTypes.ENUM("student", "teacher"), // Define the possible roles
+  //   defaultValue: "student",
+  //   allowNull: false,
+  // },
 });
 
 //If the table not exict it will creat it in DB
@@ -48,7 +47,7 @@ const user = db.define("users", {
 //   .catch((err) => {
 //     console.log("courses talbel NOT added ", err);
 //   });
-user.sync();
+// user.sync();
 
 module.exports = user;
 // User.sync() - This creates the table if it doesn't exist (and does nothing if it already exists)

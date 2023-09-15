@@ -10,6 +10,5 @@ router.get("/:id", courseController.getById);
 router.post("/add", courseController.create);
 router.delete("/delete/:id", courseController.delete);
 router.put("/update/:id", courseController.update);
-//for testing porpose only
-router.get("/test", courseController.test);
+
 module.exports = router;

@@ -2,13 +2,13 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const email = "mohammedbakhadher@gmail.com";
+const email = "ai_ai852@hotmail.com";
 
 exports.transporter = nodemailer.createTransport({
-  host: "smtp.forwardemail.net",
-
-  secure: true,
-  port: 465,
+  host: "smtp.office365.com",
+  service: "hotmail",
+  secure: false,
+  port: 587,
   auth: {
     user: email,
     pass: process.env.Email_Password,
