@@ -11,10 +11,30 @@ id:      EndpointName:
 5        Delete
 */
 
-router.get("/", studentSubmissionController.list);
-router.get("/:id", studentSubmissionController.getById);
-router.post("/add", studentSubmissionController.create);
-router.put("/update/:id", studentSubmissionController.update);
-router.delete("/delete/:id", studentSubmissionController.delete);
+router.get(
+  "/",
+  checkPermission("StudentSubmissions", 1),
+  studentSubmissionController.list
+);
+router.get(
+  "/:id",
+  checkPermission("StudentSubmissions", 2),
+  studentSubmissionController.getById
+);
+router.post(
+  "/",
+  checkPermission("StudentSubmissions", 3),
+  studentSubmissionController.create
+);
+router.put(
+  "/:id",
+  checkPermission("StudentSubmissions", 4),
+  studentSubmissionController.update
+);
+router.delete(
+  "/:id",
+  checkPermission("StudentSubmissions", 5),
+  studentSubmissionController.delete
+);
 
 module.exports = router;
