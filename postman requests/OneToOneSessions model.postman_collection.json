@@ -86,13 +86,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/OneToOneSessions/add",
+					"raw": "{{url}}/OneToOneSessions",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"OneToOneSessions",
-						"add"
+						"OneToOneSessions"
 					]
 				}
 			},
@@ -114,13 +113,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/OneToOneSessions/delete/1",
+					"raw": "{{url}}/OneToOneSessions/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"OneToOneSessions",
-						"delete",
 						"1"
 					]
 				}
@@ -152,13 +150,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/OneToOneSessions/update/2",
+					"raw": "{{url}}/OneToOneSessions/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"OneToOneSessions",
-						"update",
 						"2"
 					]
 				}

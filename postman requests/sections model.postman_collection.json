@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "fe4859f4-53ca-47d1-949a-3f2649bcf8d1",
-		"name": "ContentView model",
+		"_postman_id": "b7c0ba3d-4a7c-4a5b-b793-ef743f4a0e51",
+		"name": "sections model",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21312908"
 	},
 	"item": [
 		{
-			"name": "getAllContentView",
+			"name": "getAllSections",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -22,19 +22,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/contentView",
+					"raw": "{{url}}/sections",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView"
+						"sections"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "getContentViewById",
+			"name": "getSectionsById",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -49,20 +49,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/contentView/2",
+					"raw": "{{url}}/sections/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView",
-						"2"
+						"sections",
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "add new ContentView",
+			"name": "add new sections",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"timestamp\":\"\"}",
+					"raw": "{\"title\":\"Arabic\",\"desc\":\"arabic descreption\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,19 +86,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/contentView",
+					"raw": "{{url}}/sections",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView"
+						"sections"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "delete ContentView by Id",
+			"name": "delete sections by Id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -113,12 +113,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/contentView/1",
+					"raw": "{{url}}/sections/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView",
+						"sections",
 						"1"
 					]
 				}
@@ -126,7 +126,7 @@
 			"response": []
 		},
 		{
-			"name": "update ContentView by Id",
+			"name": "update sections by Id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -150,12 +150,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/contentView/2",
+					"raw": "{{url}}/sections/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView",
+						"sections",
 						"2"
 					]
 				}
@@ -163,7 +163,7 @@
 			"response": []
 		},
 		{
-			"name": "search and sort by ContentView title",
+			"name": "search and sort by sections title",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -178,19 +178,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/contentView//?title=Mathematics&sort=title",
+					"raw": "{{url}}/sections//?title=math&sort=title",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView",
+						"sections",
 						"",
 						""
 					],
 					"query": [
 						{
 							"key": "title",
-							"value": "Mathematics"
+							"value": "math"
 						},
 						{
 							"key": "sort",
@@ -217,12 +217,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/contentView//?id=2",
+					"raw": "{{url}}/sections//?id=2&sort=id_desc",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView",
+						"sections",
 						"",
 						""
 					],
@@ -233,8 +233,7 @@
 						},
 						{
 							"key": "sort",
-							"value": "id_desc",
-							"disabled": true
+							"value": "id_desc"
 						}
 					]
 				}
@@ -257,23 +256,22 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/contentView/?desc= ",
+					"raw": "{{url}}/sections/?desc=&sort=desc_desc",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"contentView",
+						"sections",
 						""
 					],
 					"query": [
 						{
-							"key": "sort",
-							"value": "desc_desc",
-							"disabled": true
+							"key": "desc",
+							"value": ""
 						},
 						{
-							"key": "desc",
-							"value": " "
+							"key": "sort",
+							"value": "desc_desc"
 						}
 					]
 				}

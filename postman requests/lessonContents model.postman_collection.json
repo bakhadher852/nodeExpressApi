@@ -86,13 +86,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/lessonContents/add",
+					"raw": "{{url}}/lessonContents",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"lessonContents",
-						"add"
+						"lessonContents"
 					]
 				}
 			},
@@ -114,13 +113,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/lessonContents/delete/1",
+					"raw": "{{url}}/lessonContents/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"lessonContents",
-						"delete",
 						"1"
 					]
 				}
@@ -152,13 +150,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/lessonContents/update/2",
+					"raw": "{{url}}/lessonContents/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"lessonContents",
-						"update",
 						"2"
 					]
 				}

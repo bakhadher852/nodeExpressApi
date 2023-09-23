@@ -86,13 +86,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/SubmissionMarks/add",
+					"raw": "{{url}}/SubmissionMarks",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"SubmissionMarks",
-						"add"
+						"SubmissionMarks"
 					]
 				}
 			},
@@ -114,13 +113,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/SubmissionMarks/delete/1",
+					"raw": "{{url}}/SubmissionMarks/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"SubmissionMarks",
-						"delete",
 						"1"
 					]
 				}
@@ -152,13 +150,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/SubmissionMarks/update/2",
+					"raw": "{{url}}/SubmissionMarks/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"SubmissionMarks",
-						"update",
 						"2"
 					]
 				}

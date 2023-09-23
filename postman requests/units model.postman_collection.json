@@ -86,13 +86,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/units/add",
+					"raw": "{{url}}/units",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"units",
-						"add"
+						"units"
 					]
 				}
 			},
@@ -114,13 +113,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/units/delete/1",
+					"raw": "{{url}}/units/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"units",
-						"delete",
 						"1"
 					]
 				}
@@ -152,13 +150,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/units/update/2",
+					"raw": "{{url}}/units/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"units",
-						"update",
 						"2"
 					]
 				}
