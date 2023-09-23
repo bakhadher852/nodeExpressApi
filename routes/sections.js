@@ -11,10 +11,13 @@ id:      EndpointName:
 4        Update
 5        Delete
 */
-router.get("/", sectionsController.list);
-router.get("/:id", sectionsController.getById);
-router.post("/", sectionsController.create);
-router.delete("/:id", sectionsController.delete);
-router.put("/:id", sectionsController.update);
-
+router.get("/", checkPermission("Sections", 1), sectionsController.list);
+router.get("/:id", checkPermission("Sections", 2), sectionsController.getById);
+router.post("/", checkPermission("Sections", 3), sectionsController.create);
+router.put("/:id", checkPermission("Sections", 4), sectionsController.update);
+router.delete(
+  "/:id",
+  checkPermission("Sections", 5),
+  sectionsController.delete
+);
 module.exports = router;
