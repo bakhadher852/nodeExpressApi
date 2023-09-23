@@ -11,10 +11,30 @@ id:      EndpointName:
 5        Delete
 */
 
-router.get("/", contentViewsController.list);
-router.get("/:id", contentViewsController.getById);
-router.post("/add", contentViewsController.create);
-router.delete("/delete/:id", contentViewsController.delete);
-router.put("/update/:id", contentViewsController.update);
+router.get(
+  "/",
+  checkPermission("ContentViews", 1),
+  contentViewsController.list
+);
+router.get(
+  "/:id",
+  checkPermission("ContentViews", 2),
+  contentViewsController.getById
+);
+router.post(
+  "/",
+  checkPermission("ContentViews", 3),
+  contentViewsController.create
+);
+router.put(
+  "/:id",
+  checkPermission("ContentViews", 4),
+  contentViewsController.update
+);
+router.delete(
+  "/:id",
+  checkPermission("ContentViews", 5),
+  contentViewsController.delete
+);
 
 module.exports = router;
