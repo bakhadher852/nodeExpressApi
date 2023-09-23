@@ -1,9 +1,15 @@
 // routes/contentViews.js
 const express = require("express");
 const router = express.Router();
-// const contentViewsMod = require("../models/contentView");
 const contentViewsController = require("../controllers/contentView");
-// res.send("Router")
+/*
+id:      EndpointName:
+1        getAll
+2        Get
+3        Create
+4        Update
+5        Delete
+*/
 
 router.get("/", contentViewsController.list);
 router.get("/:id", contentViewsController.getById);

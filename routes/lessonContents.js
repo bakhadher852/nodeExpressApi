@@ -1,14 +1,20 @@
 // routes/lessonContents.js
 const express = require("express");
 const router = express.Router();
-const lessonContentsMod = require("../models/lessonContents");
 const lessonContentsController = require("../controllers/lessonContents");
-// res.send("Router")
+/*
+id:      EndpointName:
+1        getAll
+2        Get
+3        Create
+4        Update
+5        Delete
+*/
 
 router.get("/", lessonContentsController.list);
 router.get("/:id", lessonContentsController.getById);
 router.post("/add", lessonContentsController.create);
-router.delete("/delete/:id", lessonContentsController.delete);
 router.put("/update/:id", lessonContentsController.update);
+router.delete("/delete/:id", lessonContentsController.delete);
 
 module.exports = router;
