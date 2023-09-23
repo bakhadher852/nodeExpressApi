@@ -2,43 +2,6 @@
 const DataTypes = require("sequelize");
 const db = require("../config/database");
 
-// const Role = db.define("Role", {
-//   id: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false,
-//     primaryKey: true,
-//     autoIncrement: true,
-//   },
-//   name: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-// });
-
-// Role.sync({ alter: true });
-
-// //----------------------------
-
-// //models/endPoint.js
-
-// const Endpoint = db.define("Endpoint", {
-//   id: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false,
-//     primaryKey: true,
-//     autoIncrement: true,
-//   },
-//   name: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   // Add any other properties you need for your endpoints
-// });
-// Endpoint.sync({ alter: true });
-
-//----------------------------
-//models/AccessControl.js
-
 const AccessControl = db.define(
   "AccessControl",
   {
@@ -67,8 +30,7 @@ const AccessControl = db.define(
   },
   { timestamps: false }
 );
-// Role.belongsToMany(Endpoint, { through: AccessControl });
-// Endpoint.belongsToMany(Role, { through: AccessControl });
+
 AccessControl.sync({ alter: true });
 
 //------seedAccessControl----------------------
@@ -188,9 +150,17 @@ const accessControlSeedData = [
 // Function to seed data into the AccessControl table
 const seedAccessControlTable = async () => {
   try {
-    await AccessControl.bulkCreate(accessControlSeedData);
+    const existingData = await AccessControl.findAll();
 
-    console.log("AccessControl table seeded successfully");
+    if (existingData.length === 0) {
+      // If no data exists, then seed the table
+      await AccessControl.bulkCreate(accessControlSeedData);
+      console.log("AccessControl table seeded successfully");
+    } else {
+      console.log(
+        "AccessControl table already contains data. Skipping seeding."
+      );
+    }
   } catch (error) {
     console.error("Error seeding the AccessControl table:", error);
   }

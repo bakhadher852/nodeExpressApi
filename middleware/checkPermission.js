@@ -10,7 +10,6 @@ exports.checkPermission = (modelName, endPointId) => {
     const userData = await UsersMod.findByPk(verifiedtoken.id);
     const userRole = userData.roleId;
 
-    let tokenRole = verifiedtoken.role;
     try {
       const access = await AccessControl.findAll({
         where: {
