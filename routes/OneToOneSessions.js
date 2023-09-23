@@ -11,10 +11,30 @@ id:      EndpointName:
 5        Delete
 */
 
-router.get("/", oneToOneSessionsController.list);
-router.get("/:id", oneToOneSessionsController.getById);
-router.post("/add", oneToOneSessionsController.create);
-router.put("/update/:id", oneToOneSessionsController.update);
-router.delete("/delete/:id", oneToOneSessionsController.delete);
+router.get(
+  "/",
+  checkPermission("OneToOneSessions", 1),
+  oneToOneSessionsController.list
+);
+router.get(
+  "/:id",
+  checkPermission("OneToOneSessions", 2),
+  oneToOneSessionsController.getById
+);
+router.post(
+  "/",
+  checkPermission("OneToOneSessions", 3),
+  oneToOneSessionsController.create
+);
+router.put(
+  "/:id",
+  checkPermission("OneToOneSessions", 4),
+  oneToOneSessionsController.update
+);
+router.delete(
+  "/:id",
+  checkPermission("OneToOneSessions", 5),
+  oneToOneSessionsController.delete
+);
 
 module.exports = router;
