@@ -4,15 +4,14 @@ const router = express.Router();
 const { authentication } = require("../middleware/authentication");
 const { checkPermission } = require("../middleware/checkPermission");
 const courseController = require("../controllers/courses");
-// res.send("Router")
-//Endpoint table
+
 /*
-id      EndpointName
-1       getAll
-2       Get
-3       Create
-4       Update
-5       Delete
+id:      EndpointName:
+1        getAll
+2        Get
+3        Create
+4        Update
+5        Delete
 */
 router.get(
   "/",

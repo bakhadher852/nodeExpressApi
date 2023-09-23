@@ -56,93 +56,753 @@ id      EndpointName
 
 // Define the seed data
 const accessControlSeedData = [
+  //////////////////////## Courses End Point##/////////////////////////////
+
   /////////////////admin///////////////////
   {
     RoleId: 1, // Admin
-    EndpointId: 1, // Courses getAll
+    EndpointId: 1, //  getAll
     Model: "Courses",
     allowed: true,
   },
   {
     RoleId: 1, // Admin
-    EndpointId: 2, // Courses Get
+    EndpointId: 2, //  Get
     Model: "Courses",
     allowed: true,
   },
   {
     RoleId: 1, // Admin
-    EndpointId: 3, // Courses Create
+    EndpointId: 3, //  Create
     Model: "Courses",
     allowed: true,
   },
   {
     RoleId: 1, // Admin
-    EndpointId: 4, // Courses Update
+    EndpointId: 4, //  Update
     Model: "Courses",
     allowed: true,
   },
   {
     RoleId: 1, // Admin
-    EndpointId: 5, // Courses Delete
+    EndpointId: 5, //  Delete
     Model: "Courses",
     allowed: true,
   },
   /////////////////contentManager///////////////////
   {
-    RoleId: 2, // Admin
-    EndpointId: 1, // Courses getAll
+    RoleId: 2, // contentManager
+    EndpointId: 1, //  getAll
     Model: "Courses",
     allowed: true,
   },
   {
-    RoleId: 2, // Admin
-    EndpointId: 2, // Courses Get
+    RoleId: 2, // contentManager
+    EndpointId: 2, //  Get
     Model: "Courses",
     allowed: true,
   },
   {
-    RoleId: 2, // Admin
-    EndpointId: 3, // Courses Create
+    RoleId: 2, // contentManager
+    EndpointId: 3, //  Create
     Model: "Courses",
     allowed: true,
   },
   {
-    RoleId: 2, // Admin
-    EndpointId: 4, // Courses Update
+    RoleId: 2, // contentManager
+    EndpointId: 4, //  Update
     Model: "Courses",
     allowed: true,
   },
   {
-    RoleId: 2, // Admin
-    EndpointId: 5, // Courses Delete
+    RoleId: 2, // contentManager
+    EndpointId: 5, //  Delete
     Model: "Courses",
     allowed: true,
   },
   /////////////////teacher//////////////////////////
   {
-    RoleId: 3, // Admin
-    EndpointId: 1, // Courses getAll
+    RoleId: 3, // teacher
+    EndpointId: 1, //  getAll
     Model: "Courses",
     allowed: true,
   },
   {
-    RoleId: 3, // Admin
-    EndpointId: 2, // Courses Get
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
     Model: "Courses",
     allowed: true,
   },
 
   /////////////////student/////////////////////////
   {
-    RoleId: 1, // Admin
-    EndpointId: 4, // Courses getAll
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
     Model: "Courses",
     allowed: true,
   },
   {
-    RoleId: 4, // Admin
-    EndpointId: 2, // Courses Get
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
     Model: "Courses",
+    allowed: true,
+  },
+  //////////////////////## Sections End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "Sections",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 1, //  getAll
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 2, //  Get
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 3, //  Create
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 4, //  Update
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 5, //  Delete
+    Model: "Sections",
+    allowed: true,
+  },
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 1, //  getAll
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "Sections",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student1
+    EndpointId: 4, //  getAll
+    Model: "Sections",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "Sections",
+    allowed: true,
+  },
+  //////////////////////## Units End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "Units",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 1, //  getAll
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 2, //  Get
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 3, //  Create
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 4, //  Update
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 5, //  Delete
+    Model: "Units",
+    allowed: true,
+  },
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 1, //  getAll
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "Units",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
+    Model: "Units",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "Units",
+    allowed: true,
+  },
+  //////////////////////## Lessons End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "Lessons",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 1, //  getAll
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 2, //  Get
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 3, //  Create
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 4, //  Update
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 5, //  Delete
+    Model: "Lessons",
+    allowed: true,
+  },
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 1, //  getAll
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "Lessons",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
+    Model: "Lessons",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "Lessons",
+    allowed: true,
+  },
+  //////////////////////## LessonContents End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "LessonContents",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 1, //  getAll
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 2, //  Get
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 3, //  Create
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 4, //  Update
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 2, // contentManager
+    EndpointId: 5, //  Delete
+    Model: "LessonContents",
+    allowed: true,
+  },
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 1, //  getAll
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "LessonContents",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
+    Model: "LessonContents",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "LessonContents",
+    allowed: true,
+  },
+  //////////////////////## ContentViews End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "ContentViews",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "ContentViews",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "ContentViews",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "ContentViews",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "ContentViews",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  /*No access */
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 1, //  getAll
+    Model: "ContentViews",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "ContentViews",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
+    Model: "ContentViews",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "ContentViews",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 3, //  Create
+    Model: "ContentViews",
+    allowed: true,
+  },
+  //////////////////////## StudentSubmissions End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  /*No access */
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 1, //  getAll
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 3, //  Create
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  Update
+    Model: "StudentSubmissions",
+    allowed: true,
+  },
+  //////////////////////## SubmissionMarks End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  /*No access */
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 4, //  getAll
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 3, //  Create
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 4, //  Update
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "SubmissionMarks",
+    allowed: true,
+  },
+  //////////////////////## OneToOneSessions End Point##/////////////////////////////
+  /////////////////admin///////////////////
+  {
+    RoleId: 1, // Admin
+    EndpointId: 1, //  getAll
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 2, //  Get
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 3, //  Create
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 4, //  Update
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 1, // Admin
+    EndpointId: 5, //  Delete
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  /////////////////contentManager///////////////////
+  /*No access */
+  /////////////////teacher//////////////////////////
+  {
+    RoleId: 3, // teacher
+    EndpointId: 4, //  getAll
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 2, //  Get
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 3, //  Create
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 3, // teacher
+    EndpointId: 4, //  Update
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+
+  /////////////////student/////////////////////////
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  getAll
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 2, //  Get
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 3, //  Create
+    Model: "OneToOneSessions",
+    allowed: true,
+  },
+  {
+    RoleId: 4, // student
+    EndpointId: 4, //  Update
+    Model: "OneToOneSessions",
     allowed: true,
   },
 ];
