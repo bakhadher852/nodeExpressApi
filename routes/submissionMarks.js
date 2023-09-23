@@ -11,10 +11,30 @@ id:      EndpointName:
 5        Delete
 */
 
-router.get("/", submissionMarksController.list);
-router.get("/:id", submissionMarksController.getById);
-router.post("/add", submissionMarksController.create);
-router.put("/update/:id", submissionMarksController.update);
-router.delete("/delete/:id", submissionMarksController.delete);
+router.get(
+  "/",
+  checkPermission("SubmissionMarks", 1),
+  submissionMarksController.list
+);
+router.get(
+  "/:id",
+  checkPermission("SubmissionMarks", 2),
+  submissionMarksController.getById
+);
+router.post(
+  "/",
+  checkPermission("SubmissionMarks", 3),
+  submissionMarksController.create
+);
+router.put(
+  "/:id",
+  checkPermission("SubmissionMarks", 4),
+  submissionMarksController.update
+);
+router.delete(
+  "/:id",
+  checkPermission("SubmissionMarks", 5),
+  submissionMarksController.delete
+);
 
 module.exports = router;
