@@ -1,6 +1,8 @@
 //app.js
 
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
@@ -54,7 +56,8 @@ app.use(
   require("./routes/oneToOneSessions")
 );
 app.use("/users", require("./routes/users"));
-
+// Swagger UI middleware
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //associations
 
 // roleMod.belongsToMany(endPointMod, { through: accessControlMod });
