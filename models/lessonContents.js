@@ -29,10 +29,10 @@ const lessonContents = db.define("lessonContents", {
 // lessonContents
 //   .sync()
 //   .then((result) => {
-//     console.log("lessonContents talbel added successfully", result);
+//     console.log("=====>lessonContents talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("lessonContents talbel NOT added ", err);
+//     console.log("=====>lessonContents talbel NOT added ", err);
 //   });
 lessonContents.sync();
 module.exports = lessonContents;

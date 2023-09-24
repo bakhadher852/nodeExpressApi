@@ -41,10 +41,10 @@ const user = db.define("users", {
 // course
 //   .sync()
 //   .then((result) => {
-//     console.log("courses talbel added successfully", result);
+//     console.log("=====>courses talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("courses talbel NOT added ", err);
+//     console.log("=====>courses talbel NOT added ", err);
 //   });
 user.sync({ alter: true });
 user.belongsTo(roleMod, { foreignKey: "roleId" });

@@ -94,7 +94,7 @@ exports.create = async (req, res) => {
     desc: desc,
   })
     .then((newCourse) => {
-      console.log("New course added:");
+      console.log("=====>New course added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
@@ -119,10 +119,10 @@ exports.update = async (req, res) => {
   )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("Course updated successfully");
+        console.log("=====>Course updated successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not updated");
+        console.log("=====>Course not found or not updated");
         res.sendStatus(404);
       }
     })
@@ -140,10 +140,10 @@ exports.delete = async (req, res) => {
   })
     .then((result) => {
       if (result === 1) {
-        console.log("Course deleted successfully");
+        console.log("=====>Course deleted successfully");
         res.sendStatus(200);
       } else {
-        console.log("Course not found or not deleted");
+        console.log("=====>Course not found or not deleted");
         res.sendStatus(404);
       }
     })

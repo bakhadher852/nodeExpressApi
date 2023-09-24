@@ -29,7 +29,7 @@ Now, when you make a request like http://localhost:3000/courses/?page=2&pageSize
 //     title: course.dataValues.title,
 //     descreption: course.dataValues.desc,
 //   }));
-//   console.log("==========================", courses);
+//   console.log("=====>==========================", courses);
 //   res.json(courses);
 // });
 /*         

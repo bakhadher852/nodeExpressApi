@@ -21,10 +21,10 @@ const sections = db.define("sections", {
 // sections
 //   .sync()
 //   .then((result) => {
-//     console.log("sections talbel added successfully", result);
+//     console.log("=====>sections talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("sections talbel NOT added ", err);
+//     console.log("=====>sections talbel NOT added ", err);
 //   });
 sections.sync();
 module.exports = sections;

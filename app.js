@@ -1,21 +1,16 @@
 //app.js
-const { accessControlMod, endPointMod, roleMod } = require("./all-imports");
+
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
-const { authentication } = require("./middleware/authentication");
-const { authorization } = require("./middleware/authorization");
-const { encryptId, decryptId } = require("./middleware/encrypt");
-const { TeacherAccessOnly } = require("./middleware/checkTeacher");
-const seederAccessContro = require("./seeds/addRowsToAccessControlWithPermision");
-const seedEndPoints = require("./seeds/seedEndPoints");
-const seedRoles = require("./seeds/seedRoles");
+//uncomment the below code for the first time to add seeds to database
+// const seederAccessContro = require("./seeds/addRowsToAccessControlWithPermision");
+// const seedEndPoints = require("./seeds/seedEndPoints");
+// const seedRoles = require("./seeds/seedRoles");
 app.use(bodyParser.json());
 const errorHandler = require("./middleware/errorHandler");
-// const accessControlMod = require("./models/accessControl");
-// const endPointMod = require("./models/endPoint");
-// const roleMod = require("./models/role");
+
 // Set EJS as the view engine
 
 app.set("view engine", "ejs");
@@ -23,7 +18,9 @@ try {
   app.get("/", (req, res) => {
     const data = { name: "Mohammed Ba Khadher" };
     res.render("index", data);
-    console.log("Connection to server has been established successfully.");
+    console.log(
+      "=====>Connection to server has been established successfully."
+    );
     // console.log(mod);
   });
 } catch (error) {

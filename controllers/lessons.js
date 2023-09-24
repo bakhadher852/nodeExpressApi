@@ -93,7 +93,7 @@ exports.create = async (req, res) => {
       desc: desc,
     })
     .then((newlessons) => {
-      console.log("New lessons added:");
+      console.log("=====>New lessons added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
@@ -119,10 +119,10 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("lessons updated successfully");
+        console.log("=====>lessons updated successfully");
         res.status(200).send("lessons updated successfully");
       } else {
-        console.log("lessons not found or not updated");
+        console.log("=====>lessons not found or not updated");
         res.status(404).send("lessons not found or not updated");
       }
     })
@@ -141,10 +141,10 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("lessons deleted successfully");
+        console.log("=====>lessons deleted successfully");
         res.status(200).send("lessons deleted successfully");
       } else {
-        console.log("lessons not found or not deleted");
+        console.log("=====>lessons not found or not deleted");
         res.status(404).send("lessons not found or not deleted");
       }
     })

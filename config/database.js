@@ -2,7 +2,7 @@
 
 const { Sequelize } = require("sequelize");
 //add the IP adress for postgrest in docker
-const sequelize = new Sequelize("bakhadherdb", "postgres", "12345", {
+const sequelize = new Sequelize("postgres", "postgres", "12345", {
   host: "localhost",
   port: 5432,
   dialect: "postgres",
@@ -12,7 +12,9 @@ const sequelize = new Sequelize("bakhadherdb", "postgres", "12345", {
 sequelize
   .authenticate()
   .then(() => {
-    console.log("Connection to postgreSQL has been established successfully.");
+    console.log(
+      "=====>Connection to postgreSQL has been established successfully."
+    );
   })
   .catch((error) => {
     console.error("Unable to connect to the postgreSQL database:", error);
@@ -23,7 +25,7 @@ sequelize
 async function createDatabase() {
   try {
     await sequelize.sync({ alter: true });
-    console.log("Database created successfully!");
+    console.log("=====>Database created successfully!");
   } catch (error) {
     console.error("Error creating database:", error);
   } finally {

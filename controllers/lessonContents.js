@@ -102,7 +102,7 @@ exports.create = async (req, res) => {
       content: content, // Add the "content" property based on the lessonContents model
     })
     .then((newLessonContent) => {
-      console.log("New lesson content added:");
+      console.log("=====>New lesson content added:");
 
       res.sendStatus(201); // Send a 201 status code to indicate successful creation
     })
@@ -130,7 +130,7 @@ exports.update = async (req, res) => {
       }
     )
     .then(() => {
-      console.log(" lesson content updated");
+      console.log("=====> lesson content updated");
       res.status(200).send(" lesson content updated");
     })
     .catch((err) => {
@@ -147,10 +147,10 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("lessonContents deleted successfully");
+        console.log("=====>lessonContents deleted successfully");
         res.status(200).send("lessonContents deleted successfully");
       } else {
-        console.log("lessonContents not found or not deleted");
+        console.log("=====>lessonContents not found or not deleted");
         res.status(404).send("lessonContents not found or not deleted");
       }
     })

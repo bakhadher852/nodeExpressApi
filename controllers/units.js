@@ -94,7 +94,7 @@ exports.create = async (req, res) => {
       desc: desc,
     })
     .then((newCourse) => {
-      console.log("New unit added:");
+      console.log("=====>New unit added:");
 
       res.status(201).send("New unit added:");
     })
@@ -120,10 +120,10 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("units updated successfully");
+        console.log("=====>units updated successfully");
         res.status(200).send("units updated successfully");
       } else {
-        console.log("units not found or not updated");
+        console.log("=====>units not found or not updated");
         res.status(404).send("units not found or not updated");
       }
     })
@@ -142,10 +142,10 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("units deleted successfully");
+        console.log("=====>units deleted successfully");
         res.status(200).send("units deleted successfully");
       } else {
-        console.log("units not found or not deleted");
+        console.log("=====>units not found or not deleted");
         res.status(404).send("units not found or not deleted");
       }
     })

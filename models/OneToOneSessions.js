@@ -30,10 +30,10 @@ const oneToOneSessions = db.define("oneToOneSessions", {
 // oneToOneSessions
 //   .sync()
 //   .then((result) => {
-//     console.log("oneToOneSessions talbel added successfully", result);
+//     console.log("=====>oneToOneSessions talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("oneToOneSessions talbel NOT added ", err);
+//     console.log("=====>oneToOneSessions talbel NOT added ", err);
 //   });
 oneToOneSessions.sync();
 module.exports = oneToOneSessions;

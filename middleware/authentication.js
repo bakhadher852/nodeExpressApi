@@ -1,7 +1,7 @@
 // middleware/authentication.js
 const jwt = require("jsonwebtoken");
 
-//----------------------------------------authentication----------------------------------------------*/
+//----------------------------------------authentication-------------------------------------------*/
 
 exports.authentication = async function (req, res, next) {
   try {

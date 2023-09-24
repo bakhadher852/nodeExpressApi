@@ -21,10 +21,10 @@ const units = db.define("units", {
 // units
 //   .sync()
 //   .then((result) => {
-//     console.log("units talbel added successfully", result);
+//     console.log("=====>units talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("units talbel NOT added ", err);
+//     console.log("=====>units talbel NOT added ", err);
 //   });
 units.sync();
 module.exports = units;

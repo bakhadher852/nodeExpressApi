@@ -18,10 +18,10 @@ const contentViews = db.define("contentViews", {
 // contentViews
 //   .sync()
 //   .then((result) => {
-//     console.log("contentViews talbel added successfully", result);
+//     console.log("=====>contentViews talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("contentViews talbel NOT added ", err);
+//     console.log("=====>contentViews talbel NOT added ", err);
 //   });
 contentViews.sync();
 module.exports = contentViews;

@@ -21,7 +21,7 @@ const endpointSeedData = [
 ];
 
 // Function to seed data into the Endpoint table
-const seedEndpointTable = async () => {
+db.sync().then(async () => {
   try {
     const existingData = await Endpoint.findAll();
 
@@ -29,14 +29,13 @@ const seedEndpointTable = async () => {
       // If no data exists, then seed the table
       await Endpoint.sync();
       await Endpoint.bulkCreate(endpointSeedData);
-      console.log("Endpoint table seeded successfully");
+      console.log("=====>Endpoint table seeded successfully");
     } else {
-      console.log("Endpoint table already contains data. Skipping seeding.");
+      console.log(
+        "=====>Endpoint table already contains data. Skipping seeding."
+      );
     }
   } catch (error) {
     console.error("Error seeding the Endpoint table:", error);
   }
-};
-
-// Run the seed function
-seedEndpointTable();
+});

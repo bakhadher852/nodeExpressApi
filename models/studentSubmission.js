@@ -17,10 +17,10 @@ const studentSubmission = db.define("studentSubmission", {
 // studentSubmission
 //   .sync()
 //   .then((result) => {
-//     console.log("studentSubmission talbel added successfully", result);
+//     console.log("=====>studentSubmission talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("studentSubmission talbel NOT added ", err);
+//     console.log("=====>studentSubmission talbel NOT added ", err);
 //   });
 studentSubmission.sync();
 module.exports = studentSubmission;

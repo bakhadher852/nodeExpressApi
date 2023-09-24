@@ -808,14 +808,14 @@ const accessControlSeedData = [
 ];
 
 // Function to seed data into the AccessControl table
-const seedAccessControlTable = async () => {
+db.sync().then(async () => {
   try {
     const existingData = await AccessControl.findAll();
 
     if (existingData.length === 0) {
       // If no data exists, then seed the table
       await AccessControl.bulkCreate(accessControlSeedData);
-      console.log("AccessControl table seeded successfully");
+      console.log("=====>AccessControl table seeded successfully");
     } else {
       console.log(
         "AccessControl table already contains data. Skipping seeding."
@@ -824,10 +824,7 @@ const seedAccessControlTable = async () => {
   } catch (error) {
     console.error("Error seeding the AccessControl table:", error);
   }
-};
-
-// Run the seed function
-seedAccessControlTable();
+});
 
 //delete all rows in AccessControl
 // AccessControl.destroy({ where: {} });

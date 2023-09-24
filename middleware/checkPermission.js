@@ -6,7 +6,7 @@ const UsersMod = require("../models/users");
 exports.checkPermission = (modelName, endPointId) => {
   return async (req, res, next) => {
     const verifiedtoken = req.verifiedtoken;
-
+    console.log("==============================", verifiedtoken);
     const userData = await UsersMod.findByPk(verifiedtoken.id);
     const userRole = userData.roleId;
 

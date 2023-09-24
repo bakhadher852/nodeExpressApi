@@ -93,7 +93,7 @@ exports.create = async (req, res) => {
       desc: desc,
     })
     .then(() => {
-      console.log("New section added:");
+      console.log("=====>New section added:");
 
       res.status(201).send("New section added");
     })
@@ -119,10 +119,10 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("sections updated successfully");
+        console.log("=====>sections updated successfully");
         res.status(200).send("sections updated successfully");
       } else {
-        console.log("sections not found or not updated");
+        console.log("=====>sections not found or not updated");
         res.status(404).send("sections not found or not updated");
       }
     })
@@ -141,10 +141,10 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("sections deleted successfully");
+        console.log("=====>sections deleted successfully");
         res.status(200).send("sections deleted successfully");
       } else {
-        console.log("sections not found or not deleted");
+        console.log("=====>sections not found or not deleted");
         res.status(404).send("sections not found or not deleted");
       }
     })

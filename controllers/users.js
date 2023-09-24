@@ -143,7 +143,7 @@ exports.signup = async (req, res) => {
         if (error) {
           console.error("Error sending email:", error);
         } else {
-          console.log("Email sent:", info.response);
+          console.log("=====>Email sent:", info.response);
         }
       });
       // User registration successful
@@ -191,7 +191,7 @@ exports.resetPassword = async (req, res) => {
         console.error("Error sending password reset email:", error);
         return res.status(500).send("Error sending password reset email");
       }
-      console.log("Password reset email sent:", info.response);
+      console.log("=====>Password reset email sent:", info.response);
       res.send({
         message: "Password reset email sent successfully",
         resetToken: resetToken,

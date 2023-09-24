@@ -21,10 +21,10 @@ const lessons = db.define("lessons", {
 // lessons
 //   .sync()
 //   .then((result) => {
-//     console.log("lessons talbel added successfully", result);
+//     console.log("=====>lessons talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("lessons talbel NOT added ", err);
+//     console.log("=====>lessons talbel NOT added ", err);
 //   });
 lessons.sync();
 module.exports = lessons;

@@ -9,7 +9,7 @@ const client = new Client({
 async function connect() {
   try {
     await client.connect();
-    console.log("Connected to PostgreSQL database");
+    console.log("=====>Connected to PostgreSQL database");
   } catch (err) {
     console.error("Error connecting to database", err);
   }
@@ -27,7 +27,7 @@ const createTableQuery = `
 // async function createTable() {
 //   try {
 //     await client.query(createTableQuery);
-//     console.log("Table created successfully");
+//     console.log("=====>Table created successfully");
 //   } catch (err) {
 //     console.error("Error creating table", err);
 //   }
@@ -43,7 +43,7 @@ const createTableQuery = `
 //            (2, 'English', 'englishSub');`;
 
 //     await client.query(insertQuery);
-//     console.log("Data inserted successfully");
+//     console.log("=====>Data inserted successfully");
 //   } catch (err) {
 //     console.error("Error inserting data", err);
 //   }
@@ -55,7 +55,7 @@ const createTableQuery = `
 async function fetchData() {
   try {
     const result = await client.query("SELECT * FROM Course");
-    console.log("Fetched data:", result.rows);
+    console.log("=====>Fetched data:", result.rows);
   } catch (err) {
     console.error("Error fetching data", err);
   }
@@ -67,7 +67,7 @@ fetchData();
 // async function closeConnection() {
 //   try {
 //     await client.end();
-//     console.log("Database connection closed");
+//     console.log("=====>Database connection closed");
 //   } catch (err) {
 //     console.error("Error closing database connection", err);
 //   }
@@ -87,7 +87,7 @@ async function insertData() {
            (Course.length=1, 'English', 'englishSub');`;
 
     await client.query(insertQuery);
-    console.log("Data inserted successfully");
+    console.log("=====>Data inserted successfully");
   } catch (err) {
     console.error("Error inserting data", err);
   }
@@ -98,7 +98,7 @@ insertData();
 async function fetchData() {
   try {
     const result = await client.query("SELECT * FROM Course");
-    console.log("Fetched data:", result.rows);
+    console.log("=====>Fetched data:", result.rows);
   } catch (err) {
     console.error("Error fetching data", err);
   }
@@ -115,9 +115,9 @@ async function getCourseById(id) {
 
     const result = await client.query(selectQuery, [id]);
     if (result.rows.length === 0) {
-      console.log("Course not found");
+      console.log("=====>Course not found");
     } else {
-      console.log("Course with ID", id, ":", result.rows[0]);
+      console.log("=====>Course with ID", id, ":", result.rows[0]);
     }
   } catch (err) {
     console.error("Error fetching course", err);
@@ -133,7 +133,7 @@ async function updateCourse(id, title, descr) {
       `;
 
     await client.query(updateQuery, [title, description, id]);
-    console.log("Course updated successfully");
+    console.log("=====>Course updated successfully");
   } catch (err) {
     console.error("Error updating course", err);
   }
@@ -147,7 +147,7 @@ async function deleteCourse(id) {
       `;
 
     await client.query(deleteQuery, [id]);
-    console.log("Course deleted successfully");
+    console.log("=====>Course deleted successfully");
   } catch (err) {
     console.error("Error deleting course", err);
   }

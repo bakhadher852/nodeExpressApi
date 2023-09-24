@@ -15,9 +15,9 @@ db.sync().then(async () => {
 
     if (existingRoles.length === 0) {
       await Role.bulkCreate(rolesData);
-      console.log("Roles seeded successfully");
+      console.log("=====>Roles seeded successfully");
     } else {
-      console.log("Roles already exist, no need to seed.");
+      console.log("=====>Roles already exist, no need to seed.");
     }
   } catch (error) {
     console.error("Error seeding roles:", error);

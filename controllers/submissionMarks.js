@@ -85,7 +85,7 @@ exports.create = async (req, res) => {
       mark: mark,
     })
     .then((newCourse) => {
-      console.log("New submissionMarks added:");
+      console.log("=====>New submissionMarks added:");
 
       res.status(201).send("New submissionMarks added:");
     })
@@ -110,10 +110,10 @@ exports.update = async (req, res) => {
     )
     .then((result) => {
       if (result[0] === 1) {
-        console.log("submissionMarks updated successfully");
+        console.log("=====>submissionMarks updated successfully");
         res.status(200).send("submissionMarks updated successfully");
       } else {
-        console.log("submissionMarks not found or not updated");
+        console.log("=====>submissionMarks not found or not updated");
         res.status(404).send("submissionMarks not found or not updated");
       }
     })
@@ -132,10 +132,10 @@ exports.delete = async (req, res) => {
     })
     .then((result) => {
       if (result === 1) {
-        console.log("submissionMarks deleted successfully");
+        console.log("=====>submissionMarks deleted successfully");
         res.status(200).send("submissionMarks deleted successfully");
       } else {
-        console.log("submissionMarks not found or not deleted");
+        console.log("=====>submissionMarks not found or not deleted");
         res.status(404).send("submissionMarks not found or not deleted");
       }
     })

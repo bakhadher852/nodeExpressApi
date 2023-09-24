@@ -17,10 +17,10 @@ const submissionMarks = db.define("submissionMarks", {
 // submissionMarks
 //   .sync()
 //   .then((result) => {
-//     console.log("submissionMarks talbel added successfully", result);
+//     console.log("=====>submissionMarks talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("submissionMarks talbel NOT added ", err);
+//     console.log("=====>submissionMarks talbel NOT added ", err);
 //   });
 submissionMarks.sync();
 module.exports = submissionMarks;

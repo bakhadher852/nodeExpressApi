@@ -29,7 +29,7 @@ course.afterSync(() => {
           desc: "This is a sample course description.",
         })
         .then(() => {
-          console.log("Sample course added successfully.");
+          console.log("=====>Sample course added successfully.");
         })
         .catch((err) => {
           console.error("Error adding sample course:", err);
@@ -41,10 +41,10 @@ course.afterSync(() => {
 // course
 //   .sync()
 //   .then((result) => {
-//     console.log("courses talbel added successfully", result);
+//     console.log("=====>courses talbel added successfully", result);
 //   })
 //   .catch((err) => {
-//     console.log("courses talbel NOT added ", err);
+//     console.log("=====>courses talbel NOT added ", err);
 //   });
-course.sync({ force: true });
+course.sync();
 module.exports = course;
