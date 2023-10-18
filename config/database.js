@@ -1,35 +1,36 @@
 // config/database.js
 
 const { Sequelize } = require("sequelize");
-//add the IP adress for postgrest in docker
-const sequelize = new Sequelize("postgres", "postgres", "12345", {
-  host: "localhost",
-  port: 5432,
-  dialect: "postgres",
-});
 
-//check connection
+// Add the correct connection URL for your PostgreSQL database
+const sequelize = new Sequelize(
+  "postgres://default:WKP5w0hTzDdI@ep-lingering-moon-39015399-pooler.ap-southeast-1.postgres.vercel-storage.com:5432/verceldb",
+  {
+    dialectOptions: {
+      ssl: {
+        require: true,
+      },
+    },
+  }
+);
+
+// Check the connection
 sequelize
   .authenticate()
   .then(() => {
-    console.log(
-      "=====>Connection to postgreSQL has been established successfully."
-    );
+    console.log("Connection to PostgreSQL has been established successfully.");
   })
   .catch((error) => {
-    console.error("Unable to connect to the postgreSQL database:", error);
+    console.error("Unable to connect to the PostgreSQL database:", error.stack);
   });
 
-//this code to create database if not exist
-
+// Function to create the database if it doesn't exist
 async function createDatabase() {
   try {
-    await sequelize.sync({ alter: true });
-    console.log("=====>Database created successfully!");
+    await sequelize.sync(); // Use this for initial database creation.
+    console.log("Database created successfully!");
   } catch (error) {
     console.error("Error creating database:", error);
-  } finally {
-    // sequelize.close(); // Close the connection when done.
   }
 }
 
