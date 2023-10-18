@@ -59,7 +59,13 @@ app.use("/users", require("./routes/users"));
 // Swagger UI middleware
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //associations
+app.use(function (req, res, next) {
+  if (req.originalUrl && req.originalUrl.split("/").pop() === "favicon.ico") {
+    return res.sendStatus(204);
+  }
 
+  next();
+});
 // roleMod.belongsToMany(endPointMod, { through: accessControlMod });
 // endPointMod.belongsToMany(roleMod, { through: accessControlMod });
 
