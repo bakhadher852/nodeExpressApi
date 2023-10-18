@@ -42,3 +42,8 @@ services:
 # To stop the containers, press Ctrl+C in the terminal where Docker Compose is running, or run:
 # docker-compose down
 # This will stop and remove the containers, but the data will persist in the ./data directory on your host machine, thanks to the volume mapping.
+
+# How to build a docker image after write dockerfile ?
+#docker build -t NAME. ->the dot is the path to dockerfile
+#Youtube link https://www.youtube.com/watch?v=gAkwW2tuIqE&ab_channel=Fireship
+
